@@ -1,5 +1,5 @@
 //
-//  ContactDetailHeaderView.swift
+//  ContactEditHeaderView.swift
 //  GojekContacts
 //
 //  Created by Glynvile Satago on 04/07/2019.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ContactDetailHeaderView: UITableViewHeaderFooterView {
+class ContactEditHeaderView: UITableViewHeaderFooterView {
 
     // MARK: Default values
     static let reuseIdentifier = String(describing: self)
@@ -18,17 +18,13 @@ class ContactDetailHeaderView: UITableViewHeaderFooterView {
     
     // MARK: Public IBOutlets
     @IBOutlet weak var imgProfilePic: UIImageView!
-    @IBOutlet weak var lblName: UILabel!
-    @IBOutlet weak var btnMessage: UIButton!
-    @IBOutlet weak var btnCall: UIButton!
-    @IBOutlet weak var btnEmail: UIButton!
-    @IBOutlet weak var btnFavourite: UIButton!
+    @IBOutlet weak var btnImagePicker: UIButton!
     
     // MARK: Public properties
     weak var contactViewModel: ContactViewModel? {
         willSet {
             if let newValue = newValue {
-                 lblName.text = newValue.fullName
+                
             }
         }
     }
@@ -36,22 +32,22 @@ class ContactDetailHeaderView: UITableViewHeaderFooterView {
     // MARK: Override methods
     override func awakeFromNib() {
         super.awakeFromNib()
-
+        
         // customize UI components
         self.contentView.backgroundColor = .white
         Utility.addGradientToView(view: self.contentView, colorTop: .white, colorBottom: Constant.Color.green)
         Utility.roundImage(view: self.imgProfilePic)
     }
+
+    /*
+    // Only override draw() if you perform custom drawing.
+    // An empty implementation adversely affects performance during animation.
+    override func draw(_ rect: CGRect) {
+        // Drawing code
+    }
+    */
+    @IBAction func clickedImagePicker(_ sender: UIButton) {
     
-    // MARK: private methods
-    
-    @IBAction func clickedMessage(_ sender: UIButton) {
-    }
-    @IBAction func clickedCall(_ sender: UIButton) {
-    }
-    @IBAction func clickedEmail(_ sender: UIButton) {
-    }
-    @IBAction func clickedFavourite(_ sender: UIButton) {
     }
     
 }

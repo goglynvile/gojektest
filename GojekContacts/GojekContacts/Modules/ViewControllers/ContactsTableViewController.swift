@@ -22,6 +22,8 @@ class ContactsTableViewController: UITableViewController {
     private func fetchAllContacts() {
         DataFetcher.shared.fetchAllContacts { (result, error) in
             if let result = result {
+                
+                print("contacts result: \(result)")
                 for item in result {
                     guard let nItem = item as? Dictionary<String, Any> else { return }
                     let contact = Contact(id: nItem["id"] as? Int, firstName: nItem["first_name"] as? String, lastName: nItem["last_name"] as? String, profilePic: nItem["profile_pic"] as? String, favorite: nItem["favorite"] as? Bool, url: nItem["url"] as? String)

@@ -24,6 +24,9 @@
 		00FDECDE22CDB4EF00C00B02 /* ContactDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FDECDD22CDB4EF00C00B02 /* ContactDetailTableViewController.swift */; };
 		00FDECE022CDB71A00C00B02 /* ContactDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FDECDF22CDB71A00C00B02 /* ContactDetailHeaderView.swift */; };
 		00FDECE222CDBE8500C00B02 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FDECE122CDBE8500C00B02 /* Utility.swift */; };
+		00FDECE422CDC49500C00B02 /* ContactEditTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FDECE322CDC49500C00B02 /* ContactEditTableViewController.swift */; };
+		00FDECE622CDC4B600C00B02 /* ContactEditHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00FDECE522CDC4B600C00B02 /* ContactEditHeaderView.xib */; };
+		00FDECE822CDC56700C00B02 /* ContactEditHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FDECE722CDC56700C00B02 /* ContactEditHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +61,9 @@
 		00FDECDD22CDB4EF00C00B02 /* ContactDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailTableViewController.swift; sourceTree = "<group>"; };
 		00FDECDF22CDB71A00C00B02 /* ContactDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailHeaderView.swift; sourceTree = "<group>"; };
 		00FDECE122CDBE8500C00B02 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		00FDECE322CDC49500C00B02 /* ContactEditTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactEditTableViewController.swift; sourceTree = "<group>"; };
+		00FDECE522CDC4B600C00B02 /* ContactEditHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactEditHeaderView.xib; sourceTree = "<group>"; };
+		00FDECE722CDC56700C00B02 /* ContactEditHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactEditHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +138,7 @@
 			children = (
 				006F854222CD93D400ED830F /* ContactTableViewCell.swift */,
 				00FDECDF22CDB71A00C00B02 /* ContactDetailHeaderView.swift */,
+				00FDECE722CDC56700C00B02 /* ContactEditHeaderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -141,6 +148,7 @@
 			children = (
 				006F854022CD93BE00ED830F /* ContactsTableViewController.swift */,
 				00FDECDD22CDB4EF00C00B02 /* ContactDetailTableViewController.swift */,
+				00FDECE322CDC49500C00B02 /* ContactEditTableViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -197,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				00FDECDB22CDB37A00C00B02 /* ContactDetailHeaderView.xib */,
+				00FDECE522CDC4B600C00B02 /* ContactEditHeaderView.xib */,
 			);
 			path = Nibs;
 			sourceTree = "<group>";
@@ -282,6 +291,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				00FDECE622CDC4B600C00B02 /* ContactEditHeaderView.xib in Resources */,
 				006F852522CD7FF900ED830F /* LaunchScreen.storyboard in Resources */,
 				006F852222CD7FF900ED830F /* Assets.xcassets in Resources */,
 				006F852022CD7FF700ED830F /* Main.storyboard in Resources */,
@@ -309,12 +319,14 @@
 				006F854A22CD974C00ED830F /* ContactViewModel.swift in Sources */,
 				006F854822CD961800ED830F /* Contact.swift in Sources */,
 				006F855522CD9E8200ED830F /* Constants.swift in Sources */,
+				00FDECE822CDC56700C00B02 /* ContactEditHeaderView.swift in Sources */,
 				006F851B22CD7FF700ED830F /* AppDelegate.swift in Sources */,
 				006F855222CD9DA200ED830F /* Data+Contact.swift in Sources */,
 				00FDECE222CDBE8500C00B02 /* Utility.swift in Sources */,
 				006F854122CD93BE00ED830F /* ContactsTableViewController.swift in Sources */,
 				006F854F22CD9D4C00ED830F /* DataFetcher.swift in Sources */,
 				00FDECDE22CDB4EF00C00B02 /* ContactDetailTableViewController.swift in Sources */,
+				00FDECE422CDC49500C00B02 /* ContactEditTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

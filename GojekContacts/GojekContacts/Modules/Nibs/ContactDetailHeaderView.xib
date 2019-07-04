@@ -13,19 +13,19 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ContactDetailHeaderView" customModule="GojekContacts" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="340"/>
+            <rect key="frame" x="0.0" y="0.0" width="416" height="340"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GiC-RG-17O">
-                    <rect key="frame" x="142" y="44" width="130" height="130"/>
-                    <color key="backgroundColor" red="0.31570082902908325" green="0.8906407356262207" blue="0.76005297899246216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder_photo" translatesAutoresizingMaskIntoConstraints="NO" id="GiC-RG-17O">
+                    <rect key="frame" x="143" y="62" width="130" height="130"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="130" id="IUE-53-0Yi"/>
                         <constraint firstAttribute="width" constant="130" id="Qba-55-Ius"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Second" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nOf-Uu-c0t">
-                    <rect key="frame" x="153" y="182" width="108.5" height="22"/>
+                    <rect key="frame" x="154" y="200" width="108.5" height="22"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="22" id="CLg-M1-Red"/>
                     </constraints>
@@ -34,20 +34,20 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="oY9-eD-oQc">
-                    <rect key="frame" x="40" y="244" width="334" height="74"/>
+                    <rect key="frame" x="40" y="246" width="336" height="74"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="QMu-Go-Sx7">
-                            <rect key="frame" x="0.0" y="0.0" width="83.5" height="74"/>
+                            <rect key="frame" x="0.0" y="0.0" width="84" height="74"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OlA-eo-hWm">
-                                    <rect key="frame" x="0.0" y="0.0" width="83.5" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="84" height="44"/>
                                     <state key="normal" image="message_button"/>
                                     <connections>
                                         <action selector="clickedMessage:" destination="-2" eventType="touchUpInside" id="LPx-b9-Ivn"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s3V-Iy-cW4">
-                                    <rect key="frame" x="0.0" y="44" width="83.5" height="30"/>
+                                    <rect key="frame" x="0.0" y="44" width="84" height="30"/>
                                     <state key="normal" title="message">
                                         <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
@@ -55,17 +55,17 @@
                             </subviews>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="l8T-3F-Ga2">
-                            <rect key="frame" x="83.5" y="0.0" width="83.5" height="74"/>
+                            <rect key="frame" x="84" y="0.0" width="84" height="74"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E6L-6G-n1t">
-                                    <rect key="frame" x="0.0" y="0.0" width="83.5" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="84" height="44"/>
                                     <state key="normal" image="call_button"/>
                                     <connections>
                                         <action selector="clickedCall:" destination="-2" eventType="touchUpInside" id="YTF-gE-c29"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yI0-fk-sE3">
-                                    <rect key="frame" x="0.0" y="44" width="83.5" height="30"/>
+                                    <rect key="frame" x="0.0" y="44" width="84" height="30"/>
                                     <state key="normal" title="call">
                                         <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
@@ -73,17 +73,17 @@
                             </subviews>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="p9J-q0-dEG">
-                            <rect key="frame" x="167" y="0.0" width="83.5" height="74"/>
+                            <rect key="frame" x="168" y="0.0" width="84" height="74"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yii-9L-tcL">
-                                    <rect key="frame" x="0.0" y="0.0" width="83.5" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="84" height="44"/>
                                     <state key="normal" image="email_button"/>
                                     <connections>
                                         <action selector="clickedEmail:" destination="-2" eventType="touchUpInside" id="4eD-xs-zGL"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SaB-nE-GHB">
-                                    <rect key="frame" x="0.0" y="44" width="83.5" height="30"/>
+                                    <rect key="frame" x="0.0" y="44" width="84" height="30"/>
                                     <state key="normal" title="email">
                                         <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
@@ -91,17 +91,17 @@
                             </subviews>
                         </stackView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="LVX-YF-UUs">
-                            <rect key="frame" x="250.5" y="0.0" width="83.5" height="74"/>
+                            <rect key="frame" x="252" y="0.0" width="84" height="74"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ndN-y8-lYc">
-                                    <rect key="frame" x="0.0" y="0.0" width="83.5" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="84" height="44"/>
                                     <state key="normal" image="favourite_button"/>
                                     <connections>
                                         <action selector="clickedFavourite:" destination="-2" eventType="touchUpInside" id="XaM-zi-Yyl"/>
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IzZ-LO-obQ">
-                                    <rect key="frame" x="0.0" y="44" width="83.5" height="30"/>
+                                    <rect key="frame" x="0.0" y="44" width="84" height="30"/>
                                     <state key="normal" title="favourite">
                                         <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </state>
@@ -116,12 +116,12 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="oY9-eD-oQc" firstAttribute="top" secondItem="nOf-Uu-c0t" secondAttribute="bottom" constant="40" id="8RT-KG-guU"/>
                 <constraint firstItem="oY9-eD-oQc" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="40" id="Dut-Pm-91v"/>
                 <constraint firstItem="nOf-Uu-c0t" firstAttribute="top" secondItem="GiC-RG-17O" secondAttribute="bottom" constant="8" id="Dwp-fW-gEb"/>
                 <constraint firstItem="GiC-RG-17O" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="WrJ-pm-Y6q"/>
-                <constraint firstItem="GiC-RG-17O" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="p8W-mo-6B7"/>
+                <constraint firstItem="GiC-RG-17O" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="18" id="p8W-mo-6B7"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="oY9-eD-oQc" secondAttribute="trailing" constant="40" id="tKi-pa-NCY"/>
+                <constraint firstAttribute="bottom" secondItem="oY9-eD-oQc" secondAttribute="bottom" constant="20" id="upT-xR-h81"/>
                 <constraint firstItem="nOf-Uu-c0t" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="y65-WM-ggZ"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -142,5 +142,6 @@
         <image name="email_button" width="45" height="44"/>
         <image name="favourite_button" width="44" height="44"/>
         <image name="message_button" width="44" height="44"/>
+        <image name="placeholder_photo" width="126" height="126"/>
     </resources>
 </document>
