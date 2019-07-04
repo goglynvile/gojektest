@@ -18,6 +18,7 @@ class ContactTableViewCell: UITableViewCell {
         didSet {
             if let oldValue = oldValue {
                 lblName.text = oldValue.fullName
+                imgFavorite.isHidden = !(oldValue.contact.favorite ?? false)
             }
         }
     }

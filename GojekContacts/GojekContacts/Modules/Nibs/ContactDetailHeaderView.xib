@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ContactDetailHeaderView" customModule="GojekContacts" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="340"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="GiC-RG-17O">
+                    <rect key="frame" x="142" y="44" width="130" height="130"/>
+                    <color key="backgroundColor" red="0.31570082902908325" green="0.8906407356262207" blue="0.76005297899246216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="130" id="IUE-53-0Yi"/>
+                        <constraint firstAttribute="width" constant="130" id="Qba-55-Ius"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Second" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nOf-Uu-c0t">
+                    <rect key="frame" x="153" y="182" width="108.5" height="22"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="22" id="CLg-M1-Red"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="oY9-eD-oQc">
+                    <rect key="frame" x="40" y="244" width="334" height="74"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="QMu-Go-Sx7">
+                            <rect key="frame" x="0.0" y="0.0" width="83.5" height="74"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OlA-eo-hWm">
+                                    <rect key="frame" x="0.0" y="0.0" width="83.5" height="44"/>
+                                    <state key="normal" image="message_button"/>
+                                    <connections>
+                                        <action selector="clickedMessage:" destination="-2" eventType="touchUpInside" id="LPx-b9-Ivn"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s3V-Iy-cW4">
+                                    <rect key="frame" x="0.0" y="44" width="83.5" height="30"/>
+                                    <state key="normal" title="message">
+                                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                </button>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="l8T-3F-Ga2">
+                            <rect key="frame" x="83.5" y="0.0" width="83.5" height="74"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E6L-6G-n1t">
+                                    <rect key="frame" x="0.0" y="0.0" width="83.5" height="44"/>
+                                    <state key="normal" image="call_button"/>
+                                    <connections>
+                                        <action selector="clickedCall:" destination="-2" eventType="touchUpInside" id="YTF-gE-c29"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yI0-fk-sE3">
+                                    <rect key="frame" x="0.0" y="44" width="83.5" height="30"/>
+                                    <state key="normal" title="call">
+                                        <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                </button>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="p9J-q0-dEG">
+                            <rect key="frame" x="167" y="0.0" width="83.5" height="74"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yii-9L-tcL">
+                                    <rect key="frame" x="0.0" y="0.0" width="83.5" height="44"/>
+                                    <state key="normal" image="email_button"/>
+                                    <connections>
+                                        <action selector="clickedEmail:" destination="-2" eventType="touchUpInside" id="4eD-xs-zGL"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SaB-nE-GHB">
+                                    <rect key="frame" x="0.0" y="44" width="83.5" height="30"/>
+                                    <state key="normal" title="email">
+                                        <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                </button>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="LVX-YF-UUs">
+                            <rect key="frame" x="250.5" y="0.0" width="83.5" height="74"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ndN-y8-lYc">
+                                    <rect key="frame" x="0.0" y="0.0" width="83.5" height="44"/>
+                                    <state key="normal" image="favourite_button"/>
+                                    <connections>
+                                        <action selector="clickedFavourite:" destination="-2" eventType="touchUpInside" id="XaM-zi-Yyl"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IzZ-LO-obQ">
+                                    <rect key="frame" x="0.0" y="44" width="83.5" height="30"/>
+                                    <state key="normal" title="favourite">
+                                        <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                </button>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="74" id="4Fd-Op-Op9"/>
+                    </constraints>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="oY9-eD-oQc" firstAttribute="top" secondItem="nOf-Uu-c0t" secondAttribute="bottom" constant="40" id="8RT-KG-guU"/>
+                <constraint firstItem="oY9-eD-oQc" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="40" id="Dut-Pm-91v"/>
+                <constraint firstItem="nOf-Uu-c0t" firstAttribute="top" secondItem="GiC-RG-17O" secondAttribute="bottom" constant="8" id="Dwp-fW-gEb"/>
+                <constraint firstItem="GiC-RG-17O" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="WrJ-pm-Y6q"/>
+                <constraint firstItem="GiC-RG-17O" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="p8W-mo-6B7"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="oY9-eD-oQc" secondAttribute="trailing" constant="40" id="tKi-pa-NCY"/>
+                <constraint firstItem="nOf-Uu-c0t" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="y65-WM-ggZ"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="btnCall" destination="E6L-6G-n1t" id="LqW-Xg-nNo"/>
+                <outlet property="btnEmail" destination="Yii-9L-tcL" id="PW5-x4-aqh"/>
+                <outlet property="btnFavourite" destination="ndN-y8-lYc" id="r5u-BX-YUP"/>
+                <outlet property="btnMessage" destination="OlA-eo-hWm" id="azM-1B-bEu"/>
+                <outlet property="imgProfilePic" destination="GiC-RG-17O" id="3uS-VT-aWU"/>
+                <outlet property="lblName" destination="nOf-Uu-c0t" id="YDk-C1-iM0"/>
+            </connections>
+            <point key="canvasLocation" x="-75.362318840579718" y="-58.258928571428569"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="call_button" width="45" height="44"/>
+        <image name="email_button" width="45" height="44"/>
+        <image name="favourite_button" width="44" height="44"/>
+        <image name="message_button" width="44" height="44"/>
+    </resources>
+</document>

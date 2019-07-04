@@ -40,9 +40,16 @@ class ContactsTableViewController: UITableViewController {
             }
         }
     }
+    // MARK: Segue
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let selectedIndexPath = self.tableView.indexPathForSelectedRow else { return }
+        
+        let contactDetailViewController = segue.destination as? ContactDetailTableViewController
+        contactDetailViewController?.contactViewModel = contactViewModels[selectedIndexPath.row]
+    }
+    
     
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
         return 1
@@ -50,16 +57,15 @@ class ContactsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return contactViewModels.count
     }
-
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ContactTableViewCell
         cell.contactViewModel = contactViewModels[indexPath.row]
         return cell
+    }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "showDetail", sender: nil)
     }
 }
