@@ -21,11 +21,19 @@ class APIClient {
         guard let url = URL(string: url) else { return }
         var request = URLRequest(url: url)
         request.httpMethod = method.rawValue
-        request.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
-        if let parameters = parameters {
-            
-        }
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
         
+        if let parameters = parameters {
+            do {
+                let data = try JSONSerialization.data(withJSONObject: parameters, options: [])
+                request.httpBody = data//parameters.description.data(using: .utf8)
+            }
+            catch {
+                
+            }
+        }
+        print("request: \(request) body: \(request.httpBody)")
         let dataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
            completion(data, error)
         }

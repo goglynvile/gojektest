@@ -44,7 +44,6 @@ class ContactDetailHeaderView: UITableViewHeaderFooterView {
     }
     
     // MARK: private methods
-    
     @IBAction func clickedMessage(_ sender: UIButton) {
     }
     @IBAction func clickedCall(_ sender: UIButton) {

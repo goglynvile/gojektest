@@ -15,10 +15,10 @@ class ContactTableViewCell: UITableViewCell {
     @IBOutlet weak var imgFavorite: UIImageView!
     
     var contactViewModel: ContactViewModel? {
-        didSet {
-            if let oldValue = oldValue {
-                lblName.text = oldValue.fullName
-                imgFavorite.isHidden = !(oldValue.contact.favorite ?? false)
+        willSet {
+            if let newValue = newValue {
+                lblName.text = newValue.fullName
+                imgFavorite.isHidden = !(newValue.contact.favorite ?? false)
             }
         }
     }

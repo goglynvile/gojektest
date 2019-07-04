@@ -8,7 +8,13 @@
 
 import UIKit
 
-class ContactEditTableViewController: UITableViewController {
+protocol ContactUpdateViewControllerDelegate {
+    func didAddContact(contactViewModel: ContactViewModel)
+    func didEditContact(contactViewModel: ContactViewModel)
+    func didCancelUpdate()
+}
+
+class ContactUpdateTableViewController: UITableViewController {
  
     // MARK: Public variables
     weak var contactViewModel: ContactViewModel? {
@@ -21,6 +27,8 @@ class ContactEditTableViewController: UITableViewController {
             }
         }
     }
+    var isNew: Bool = false
+    var delegate: ContactUpdateViewControllerDelegate?
     
     // MARK: Public IBOutlets
     @IBOutlet weak var txtFirstName: UITextField!
@@ -33,26 +41,38 @@ class ContactEditTableViewController: UITableViewController {
         super.viewDidLoad()
         
          self.tableView.register(ContactEditHeaderView.nib, forHeaderFooterViewReuseIdentifier: ContactEditHeaderView.reuseIdentifier)
-        self.addButtons()
     }
     
     
-    
-    // MARK: Private methods
-    private func addButtons() {
-        let btnCancel = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(clickedCancel(sender:)))
-        let btnDone = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(clickedDone(sender:)))
+    // MARK: IBAction methods
+    @IBAction func clickedCancel(_ sender: UIBarButtonItem) {
+        self.delegate?.didCancelUpdate()
+    }
+    @IBAction func clickedDone(_ sender: UIBarButtonItem) {
+        self.addContact()
+    }
+    func addContact() {
+        var item = Parameters()
         
-        self.navigationItem.leftBarButtonItem = btnCancel
-        self.navigationItem.rightBarButtonItem = btnDone
+        item["first_name"] = txtFirstName.text
+        item["last_name"] = txtLastName.text
+        item["email"] = txtEmail.text
+        item["phone_number"] = txtMobile.text
+        print("adding...")
+        
+        DataManager.shared.addContact(item: item) { (result, error) in
+            if let result = result {
+                print("add result: \(result)")
+                let contact = Contact(item: result)
+                let cViewModel = ContactViewModel(contact: contact)
+                self.delegate?.didAddContact(contactViewModel: cViewModel)
+            }
+            else {
+                guard let error = error else { return }
+            }
+        }
     }
-    @objc private func clickedCancel(sender: UIBarButtonItem) {
-        _ = self.navigationController?.popViewController(animated: true)
-    }
-    @objc private func clickedDone(sender: UIBarButtonItem) {
-        _ = self.navigationController?.popViewController(animated: true)
-    }
-
+    
     // MARK: - Table view data source
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 260

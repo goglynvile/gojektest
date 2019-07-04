@@ -10,6 +10,11 @@ import UIKit
 
 class ContactDetailTableViewController: UITableViewController {
 
+    // MARK: IBOutlets
+    @IBOutlet weak var lblMobile: UILabel!
+    @IBOutlet weak var lblEmail: UILabel!
+    
+    
     // MARK: Public variables
     weak var contactViewModel: ContactViewModel? {
         didSet {
@@ -28,6 +33,8 @@ class ContactDetailTableViewController: UITableViewController {
         
         self.tableView.register(ContactDetailHeaderView.nib, forHeaderFooterViewReuseIdentifier: ContactDetailHeaderView.reuseIdentifier)
         self.addEditButton()
+        self.fetchContact()
+        
     }
     // MARK: Private methods
     private func addEditButton() {
@@ -37,10 +44,30 @@ class ContactDetailTableViewController: UITableViewController {
     @objc func clickedEdit(sender: UIBarButtonItem) {
         self.performSegue(withIdentifier: "showEdit", sender: sender)
     }
+    private func fetchContact() {
+        guard let id = contactViewModel?.contact.id else { return }
+        DataManager.shared.fetchContact(for: id) { (result, error) in
+            print("result: \(result)")
+            if let result = result {
+                self.contactViewModel?.contact.update(item: result)
+                
+                DispatchQueue.main.async {
+                   self.updateUI()
+                }
+            }
+            else {
+                
+            }
+        }
+    }
+    private func updateUI() {
+        self.lblMobile.text = self.contactViewModel?.contact.phoneNumber
+        self.lblEmail.text = self.contactViewModel?.contact.email
+    }
     
     // MARK: Segue methods
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let contactEditViewController = segue.destination as? ContactEditTableViewController
+        let contactEditViewController = segue.destination as? ContactUpdateTableViewController
         contactEditViewController?.contactViewModel = contactViewModel
     }
     
