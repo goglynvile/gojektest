@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		006F851B22CD7FF700ED830F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006F851A22CD7FF700ED830F /* AppDelegate.swift */; };
-		006F851D22CD7FF700ED830F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006F851C22CD7FF700ED830F /* ViewController.swift */; };
 		006F852022CD7FF700ED830F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 006F851E22CD7FF700ED830F /* Main.storyboard */; };
 		006F852222CD7FF900ED830F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 006F852122CD7FF900ED830F /* Assets.xcassets */; };
 		006F852522CD7FF900ED830F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 006F852322CD7FF900ED830F /* LaunchScreen.storyboard */; };
@@ -17,6 +16,10 @@
 		006F854322CD93D400ED830F /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006F854222CD93D400ED830F /* ContactTableViewCell.swift */; };
 		006F854822CD961800ED830F /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006F854722CD961800ED830F /* Contact.swift */; };
 		006F854A22CD974C00ED830F /* ContactViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006F854922CD974C00ED830F /* ContactViewModel.swift */; };
+		006F854D22CD98F300ED830F /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006F854C22CD98F300ED830F /* APIClient.swift */; };
+		006F854F22CD9D4C00ED830F /* DataFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006F854E22CD9D4C00ED830F /* DataFetcher.swift */; };
+		006F855222CD9DA200ED830F /* Data+Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006F855122CD9DA200ED830F /* Data+Contact.swift */; };
+		006F855522CD9E8200ED830F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006F855422CD9E8200ED830F /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,7 +35,6 @@
 /* Begin PBXFileReference section */
 		006F851722CD7FF700ED830F /* GojekContacts.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GojekContacts.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		006F851A22CD7FF700ED830F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		006F851C22CD7FF700ED830F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		006F851F22CD7FF700ED830F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		006F852122CD7FF900ED830F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		006F852422CD7FF900ED830F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -44,6 +46,10 @@
 		006F854222CD93D400ED830F /* ContactTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
 		006F854722CD961800ED830F /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		006F854922CD974C00ED830F /* ContactViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewModel.swift; sourceTree = "<group>"; };
+		006F854C22CD98F300ED830F /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		006F854E22CD9D4C00ED830F /* DataFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataFetcher.swift; sourceTree = "<group>"; };
+		006F855122CD9DA200ED830F /* Data+Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Contact.swift"; sourceTree = "<group>"; };
+		006F855422CD9E8200ED830F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,10 +91,10 @@
 		006F851922CD7FF700ED830F /* GojekContacts */ = {
 			isa = PBXGroup;
 			children = (
+				006F854B22CD97F600ED830F /* Helpers */,
 				006F854422CD956600ED830F /* Modules */,
 				006F853F22CD8D0C00ED830F /* Storyboards */,
 				006F851A22CD7FF700ED830F /* AppDelegate.swift */,
-				006F851C22CD7FF700ED830F /* ViewController.swift */,
 				006F852122CD7FF900ED830F /* Assets.xcassets */,
 				006F852322CD7FF900ED830F /* LaunchScreen.storyboard */,
 				006F852622CD7FF900ED830F /* Info.plist */,
@@ -154,6 +160,25 @@
 				006F854722CD961800ED830F /* Contact.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		006F854B22CD97F600ED830F /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				006F855022CD9D7500ED830F /* Extensions */,
+				006F854C22CD98F300ED830F /* APIClient.swift */,
+				006F854E22CD9D4C00ED830F /* DataFetcher.swift */,
+				006F855422CD9E8200ED830F /* Constants.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		006F855022CD9D7500ED830F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				006F855122CD9DA200ED830F /* Data+Contact.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,11 +283,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				006F854322CD93D400ED830F /* ContactTableViewCell.swift in Sources */,
+				006F854D22CD98F300ED830F /* APIClient.swift in Sources */,
 				006F854A22CD974C00ED830F /* ContactViewModel.swift in Sources */,
-				006F851D22CD7FF700ED830F /* ViewController.swift in Sources */,
 				006F854822CD961800ED830F /* Contact.swift in Sources */,
+				006F855522CD9E8200ED830F /* Constants.swift in Sources */,
 				006F851B22CD7FF700ED830F /* AppDelegate.swift in Sources */,
+				006F855222CD9DA200ED830F /* Data+Contact.swift in Sources */,
 				006F854122CD93BE00ED830F /* ContactsTableViewController.swift in Sources */,
+				006F854F22CD9D4C00ED830F /* DataFetcher.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

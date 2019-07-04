@@ -10,14 +10,15 @@ import UIKit
 
 class ContactTableViewCell: UITableViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    @IBOutlet weak var imgProfilePic: UIImageView!
+    @IBOutlet weak var lblName: UILabel!
+    @IBOutlet weak var imgFavorite: UIImageView!
+    
+    var contactViewModel: ContactViewModel? {
+        didSet {
+            if let oldValue = oldValue {
+                lblName.text = oldValue.fullName
+            }
+        }
     }
 }

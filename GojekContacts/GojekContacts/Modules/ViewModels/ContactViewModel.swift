@@ -14,5 +14,12 @@ class ContactViewModel {
     init(contact: Contact) {
         self.contact = contact
     }
+    
+    var fullName: String {
+        if let fName = contact.firstName, let lName = contact.lastName {
+            return "\(fName) \(lName)"
+        }
+        return ""
+    }
 }
 
