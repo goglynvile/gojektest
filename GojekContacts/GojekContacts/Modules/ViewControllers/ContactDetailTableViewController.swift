@@ -16,16 +16,7 @@ class ContactDetailTableViewController: UITableViewController {
     
     
     // MARK: Public variables
-    weak var contactViewModel: ContactViewModel? {
-        didSet {
-            if let oldValue = oldValue {
-//                self.txtFirstName.text = oldValue.contact.firstName
-//                self.txtLastName.text = oldValue.contact.lastName
-               // self.txtMobile.text = oldValue.contact
-               // self.txtEmail.text = oldValue.contact
-            }
-        }
-    }
+    weak var contactViewModel: ContactViewModel?
     
     // MARK: ViewController life cycle
     override func viewDidLoad() {
@@ -33,6 +24,7 @@ class ContactDetailTableViewController: UITableViewController {
         
         self.tableView.register(ContactDetailHeaderView.nib, forHeaderFooterViewReuseIdentifier: ContactDetailHeaderView.reuseIdentifier)
         self.addEditButton()
+        self.updateUI()
         self.fetchContact()
         
     }
@@ -51,9 +43,7 @@ class ContactDetailTableViewController: UITableViewController {
             if let result = result {
                 self.contactViewModel?.contact.update(item: result)
                 
-                DispatchQueue.main.async {
-                   self.updateUI()
-                }
+                self.updateUI()
             }
             else {
                 
@@ -61,13 +51,16 @@ class ContactDetailTableViewController: UITableViewController {
         }
     }
     private func updateUI() {
-        self.lblMobile.text = self.contactViewModel?.contact.phoneNumber
-        self.lblEmail.text = self.contactViewModel?.contact.email
+        DispatchQueue.main.async {
+            self.lblMobile.text = self.contactViewModel?.contact.phoneNumber
+            self.lblEmail.text = self.contactViewModel?.contact.email
+        }
     }
     
     // MARK: Segue methods
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let contactEditViewController = segue.destination as? ContactUpdateTableViewController
+        contactEditViewController?.delegate = self
         contactEditViewController?.contactViewModel = contactViewModel
     }
     
@@ -79,5 +72,19 @@ class ContactDetailTableViewController: UITableViewController {
     }
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 340
+    }
+}
+extension ContactDetailTableViewController: ContactUpdateViewControllerDelegate {
+    
+    func didCancelUpdate() {
+        self.dismiss(animated: true, completion: nil)
+    }
+    func didEditContact(contactViewModel: ContactViewModel) {
+        self.updateUI()
+        self.tableView.reloadData()
+        self.dismiss(animated: true, completion: nil)
+    }
+    func didAddContact(contactViewModel: ContactViewModel) {
+        self.dismiss(animated: true, completion: nil)
     }
 }

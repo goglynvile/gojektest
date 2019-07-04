@@ -22,7 +22,7 @@ class DataManager {
                     completion(array, nil)
                 }
                 else {
-                    completion(nil, "Fetched data is null.")
+                    completion(nil, Constant.Text.null)
                 }
             }
             else {
@@ -38,7 +38,7 @@ class DataManager {
                     completion(dictionary, nil)
                 }
                 else {
-                    completion(nil, "Fetched data is null.")
+                    completion(nil, Constant.Text.null)
                 }
             }
             else {
@@ -55,7 +55,7 @@ class DataManager {
                     completion(dictionary, nil)
                 }
                 else {
-                    completion(nil, "Fetched data is null.")
+                    completion(nil, Constant.Text.null)
                 }
             }
             else {
@@ -63,4 +63,22 @@ class DataManager {
             }
         }
     }
+    func editContact(id: Int, item: Parameters, completion: @escaping DictionaryCompletionHandler) {
+        print("edit parameters: \(item)")
+        APIClient.makeHTTPRequest(url: Constant.Server.contact(id: id), method: .put, parameters: item) { (data, error) in
+            if error == nil {
+                if let data = data {
+                    let dictionary = data.toJSONDictionary()
+                    completion(dictionary, nil)
+                }
+                else {
+                    completion(nil, Constant.Text.null)
+                }
+            }
+            else {
+                completion(nil, error?.localizedDescription)
+            }
+        }
+    }
+    
 }

@@ -17,16 +17,7 @@ protocol ContactUpdateViewControllerDelegate {
 class ContactUpdateTableViewController: UITableViewController {
  
     // MARK: Public variables
-    weak var contactViewModel: ContactViewModel? {
-        didSet {
-            if let oldValue = oldValue {
-                self.txtFirstName.text = oldValue.contact.firstName
-                self.txtLastName.text = oldValue.contact.lastName
-                // self.txtMobile.text = oldValue.contact
-                // self.txtEmail.text = oldValue.contact
-            }
-        }
-    }
+    weak var contactViewModel: ContactViewModel?
     var isNew: Bool = false
     var delegate: ContactUpdateViewControllerDelegate?
     
@@ -41,6 +32,10 @@ class ContactUpdateTableViewController: UITableViewController {
         super.viewDidLoad()
         
          self.tableView.register(ContactEditHeaderView.nib, forHeaderFooterViewReuseIdentifier: ContactEditHeaderView.reuseIdentifier)
+        
+        if !isNew {
+            self.updateUI()
+        }
     }
     
     
@@ -49,9 +44,16 @@ class ContactUpdateTableViewController: UITableViewController {
         self.delegate?.didCancelUpdate()
     }
     @IBAction func clickedDone(_ sender: UIBarButtonItem) {
-        self.addContact()
+        if isNew {
+            self.addContact()
+        }
+        else {
+            self.editContact()
+        }
     }
-    func addContact() {
+    
+    // MARK: Private methods
+    private func addContact() {
         var item = Parameters()
         
         item["first_name"] = txtFirstName.text
@@ -70,6 +72,35 @@ class ContactUpdateTableViewController: UITableViewController {
             else {
                 guard let error = error else { return }
             }
+        }
+    }
+    private func editContact() {
+        var item = Parameters()
+        
+        item["first_name"] = txtFirstName.text
+        item["last_name"] = txtLastName.text
+        item["email"] = txtEmail.text
+        item["phone_number"] = txtMobile.text
+        
+        guard let id = contactViewModel?.contact.id else { return }
+        
+        DataManager.shared.editContact(id: id, item: item) { (result, error) in
+            if let result = result {
+                print("edit result: \(result)")
+                self.contactViewModel?.contact.update(item: result)
+                self.delegate?.didEditContact(contactViewModel: self.contactViewModel!)
+            }
+            else {
+                guard let error = error else { return }
+            }
+        }
+    }
+    private func updateUI() {
+        if let cViewModel = contactViewModel {
+            self.txtFirstName.text = cViewModel.contact.firstName
+            self.txtLastName.text = cViewModel.contact.lastName
+            self.txtMobile.text = cViewModel.contact.phoneNumber
+            self.txtEmail.text = cViewModel.contact.email
         }
     }
     

@@ -21,4 +21,7 @@ class Constant {
     struct Color {
         static let green = UIColor(red: 81.0/255.0, green: 227.0/255.0, blue: 194.0/255.0, alpha: 1)
     }
+    struct Text {
+        static let null = "Data fetched is null."
+    }
 }
