@@ -7,9 +7,11 @@
 //
 
 import Foundation
+import UIKit
 
 class ContactViewModel {
     let contact: Contact
+    var image: UIImage?
     
     init(contact: Contact) {
         self.contact = contact
@@ -20,6 +22,15 @@ class ContactViewModel {
             return "\(fName) \(lName)"
         }
         return ""
+    }
+    var imageUrl: String? {
+        if let url = contact.profilePic {
+            return Server.baseUrl + url
+        }
+        return nil
+    }
+    var isFavorite: Bool {
+        return contact.favorite ?? false
     }
     
     // MARK: Public methods

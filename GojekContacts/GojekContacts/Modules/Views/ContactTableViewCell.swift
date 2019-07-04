@@ -10,16 +10,29 @@ import UIKit
 
 class ContactTableViewCell: UITableViewCell {
 
+    // MARK: IBOutlets
     @IBOutlet weak var imgProfilePic: UIImageView!
     @IBOutlet weak var lblName: UILabel!
     @IBOutlet weak var imgFavorite: UIImageView!
     
+    // MARK: Public properties
     var contactViewModel: ContactViewModel? {
         willSet {
             if let newValue = newValue {
                 lblName.text = newValue.fullName
                 imgFavorite.isHidden = !(newValue.contact.favorite ?? false)
+                
+                imgProfilePic.downloadImage(withPlaceholder: UIImage(named: Constant.Text.imagePlaceholder), oldImage: newValue.image, url: newValue.imageUrl) { (image) in
+                    self.contactViewModel?.image = image
+                }
             }
         }
+    }
+    
+    // MARK: Override methods
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        Utility.roundImage(view: self.imgProfilePic)
     }
 }

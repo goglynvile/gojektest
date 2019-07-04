@@ -8,6 +8,9 @@
 
 import UIKit
 
+protocol ContactDetailHeaderViewDelegate {
+    func didSelectFavorite(contactViewModel: ContactViewModel)
+}
 class ContactDetailHeaderView: UITableViewHeaderFooterView {
 
     // MARK: Default values
@@ -28,10 +31,18 @@ class ContactDetailHeaderView: UITableViewHeaderFooterView {
     weak var contactViewModel: ContactViewModel? {
         willSet {
             if let newValue = newValue {
-                 lblName.text = newValue.fullName
+                lblName.text = newValue.fullName
+
+                btnFavourite.setImage(UIImage(named: newValue.isFavorite ? "favourite_button_selected" : "favourite_button"), for: .normal)
+                
+                imgProfilePic.downloadImage(withPlaceholder: UIImage(named: Constant.Text.imagePlaceholder), oldImage: newValue.image, url: newValue.imageUrl) { (image) in
+                    self.contactViewModel?.image = image
+                }
+                
             }
         }
     }
+    var delegate: ContactDetailHeaderViewDelegate?
     
     // MARK: Override methods
     override func awakeFromNib() {
@@ -43,7 +54,15 @@ class ContactDetailHeaderView: UITableViewHeaderFooterView {
         Utility.roundImage(view: self.imgProfilePic)
     }
     
-    // MARK: private methods
+    // MARK: Private methods
+    private func updateFavoriteButton() {
+        DispatchQueue.main.async {
+            let fav = self.contactViewModel?.isFavorite ?? false
+            self.btnFavourite.setImage(UIImage(named: fav ? "favourite_button_selected" : "favourite_button"), for: .normal)
+        }
+    }
+    
+    // MARK: IBActions
     @IBAction func clickedMessage(_ sender: UIButton) {
     }
     @IBAction func clickedCall(_ sender: UIButton) {
@@ -51,6 +70,11 @@ class ContactDetailHeaderView: UITableViewHeaderFooterView {
     @IBAction func clickedEmail(_ sender: UIButton) {
     }
     @IBAction func clickedFavourite(_ sender: UIButton) {
+        
+        guard let cViewModel = contactViewModel else { return }
+        self.delegate?.didSelectFavorite(contactViewModel: cViewModel)
     }
+    
+    
     
 }

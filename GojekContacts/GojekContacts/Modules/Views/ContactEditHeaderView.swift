@@ -21,13 +21,7 @@ class ContactEditHeaderView: UITableViewHeaderFooterView {
     @IBOutlet weak var btnImagePicker: UIButton!
     
     // MARK: Public properties
-    weak var contactViewModel: ContactViewModel? {
-        willSet {
-            if let newValue = newValue {
-                
-            }
-        }
-    }
+    weak var contactViewModel: ContactViewModel?
     
     // MARK: Override methods
     override func awakeFromNib() {

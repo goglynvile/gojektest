@@ -13,8 +13,12 @@ enum HTTPMethod: String {
     case post    = "POST"
     case put     = "PUT"
 }
+
 public typealias Parameters = [String: Any]
-public typealias DataCompletionHandler = (_ data : Data?,_ error: Error?) -> Void
+public typealias DataCompletionHandler = (_ data : Data?,_ error: String?) -> Void
+public typealias ArrayCompletionHandler = (_ result : Array<Any>?,_ error: String?) -> Void
+public typealias DictionaryCompletionHandler = (_ result : Dictionary<String, Any>?,_ error: String?) -> Void
+
 
 class APIClient {
     class func makeHTTPRequest(url: String, method: HTTPMethod, parameters: Parameters?, completion: @escaping DataCompletionHandler) {
@@ -35,7 +39,7 @@ class APIClient {
         }
         print("request: \(request) body: \(request.httpBody)")
         let dataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
-           completion(data, error)
+           completion(data, error?.localizedDescription)
         }
         dataTask.resume()
     }

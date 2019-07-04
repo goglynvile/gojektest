@@ -39,7 +39,6 @@ class ContactDetailTableViewController: UITableViewController {
     private func fetchContact() {
         guard let id = contactViewModel?.contact.id else { return }
         DataManager.shared.fetchContact(for: id) { (result, error) in
-            print("result: \(result)")
             if let result = result {
                 self.contactViewModel?.contact.update(item: result)
                 self.updateUI()
@@ -53,6 +52,7 @@ class ContactDetailTableViewController: UITableViewController {
         DispatchQueue.main.async {
             self.lblMobile.text = self.contactViewModel?.contact.phoneNumber
             self.lblEmail.text = self.contactViewModel?.contact.email
+            
         }
     }
     
@@ -67,6 +67,7 @@ class ContactDetailTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: ContactDetailHeaderView.reuseIdentifier) as? ContactDetailHeaderView
         headerView?.contactViewModel = contactViewModel
+        headerView?.delegate = self
         return headerView
     }
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -88,5 +89,28 @@ extension ContactDetailTableViewController: ContactUpdateViewControllerDelegate 
     }
     func didAddContact(contactViewModel: ContactViewModel) {
         self.dismiss(animated: true, completion: nil)
+    }
+}
+extension ContactDetailTableViewController: ContactDetailHeaderViewDelegate {
+    func didSelectFavorite(contactViewModel: ContactViewModel) {
+        var item = Parameters()
+        
+        let fav = contactViewModel.isFavorite
+        item["favorite"] = !fav
+        
+        guard let id = contactViewModel.contact.id else { return }
+        DataManager.shared.editContact(id: id, item: item) { (result, error) in
+            if let result = result {
+                self.contactViewModel?.contact.update(item: result)
+                
+                self.updateUI()
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+            else {
+                
+            }
+        }
     }
 }

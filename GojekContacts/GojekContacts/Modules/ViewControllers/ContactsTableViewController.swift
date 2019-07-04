@@ -10,14 +10,22 @@ import UIKit
 
 class ContactsTableViewController: UITableViewController {
 
-    var groups = Dictionary<String, Array<ContactViewModel>>()
-    var keys = Array<String>()
-    //var contactViewModels = Array<ContactViewModel>()
+    // MARK: Private properties
+    private var groups = Dictionary<String, Array<ContactViewModel>>()
+    private var keys = Array<String>()
+    private var selectedIndexPath: IndexPath?
     
+    // MARK: ViewController life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.fetchAllContacts()
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if let selectedRow = self.selectedIndexPath {
+            self.tableView.reloadRows(at: [selectedRow], with: .automatic)
+        }
     }
 
     // MARK: - Private methods
@@ -64,6 +72,7 @@ class ContactsTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             guard let selectedIndexPath = self.tableView.indexPathForSelectedRow else { return }
+            self.selectedIndexPath = selectedIndexPath
             let contactDetailViewController = segue.destination as? ContactDetailTableViewController
             
             let key = keys[selectedIndexPath.section]
@@ -124,6 +133,7 @@ extension ContactsTableViewController: ContactUpdateViewControllerDelegate {
     func didAddContact(contactViewModel: ContactViewModel) {
         DispatchQueue.main.async {
             self.dismiss(animated: true) {
+                
 //                self.contactViewModels.insert(contactViewModel, at: 0)
 //                self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
             }
