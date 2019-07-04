@@ -10,7 +10,9 @@ import UIKit
 
 class ContactsTableViewController: UITableViewController {
 
-    var contactViewModels = Array<ContactViewModel>()
+    var groups = Dictionary<String, Array<ContactViewModel>>()
+    var keys = Array<String>()
+    //var contactViewModels = Array<ContactViewModel>()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,11 +30,22 @@ class ContactsTableViewController: UITableViewController {
                     guard let nItem = item as? Dictionary<String, Any> else { return }
                     let contact = Contact(item: nItem)
                     let cViewModel = ContactViewModel(contact: contact)
-                    self.contactViewModels.append(cViewModel)
                     
-                    DispatchQueue.main.async {
-                        self.tableView.reloadData()
+                    if let prefix = contact.firstName?.prefix(1) {
+                        var group = self.groups[String(prefix).uppercased()]
+                        if group == nil {
+                            group = Array<ContactViewModel>()
+                        }
+                        group?.append(cViewModel)
+                        self.groups[String(prefix).uppercased()] = group
                     }
+                }
+                
+                self.keys = Array(self.groups.keys)
+                self.sortAtoZ()
+                
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
                 }
             }
             else {
@@ -41,13 +54,20 @@ class ContactsTableViewController: UITableViewController {
             }
         }
     }
-    
-    
+    private func sortAtoZ() {
+       // self.contactViewModels.sort(by: { $0.fullName < $1.fullName })
+       // self.groups = self.groups.sorted(by: { $0.key < $1.key})
+        self.keys.sort(by: { $0 < $1})
+    }
+
     // MARK: Segue
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             guard let selectedIndexPath = self.tableView.indexPathForSelectedRow else { return }
             let contactDetailViewController = segue.destination as? ContactDetailTableViewController
+            
+            let key = keys[selectedIndexPath.section]
+            guard let contactViewModels = groups[key] else { fatalError() }
             contactDetailViewController?.contactViewModel = contactViewModels[selectedIndexPath.row]
         }
         else if segue.identifier == "showAdd" {
@@ -61,17 +81,32 @@ class ContactsTableViewController: UITableViewController {
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return keys.count
     }
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return keys[section]
+    }
+    override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
+        return keys
+    }
+    override func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
+        return index
+    }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        let key = keys[section]
+        guard let contactViewModels = groups[key] else { fatalError()}
         return contactViewModels.count
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ContactTableViewCell
-        cell.contactViewModel = contactViewModels[indexPath.row]
+        
+        let key = keys[indexPath.section]
+        guard let contactViewModels = groups[key] else { fatalError() }
+        let contactViewModel = contactViewModels[indexPath.row]
+        cell.contactViewModel = contactViewModel
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -87,9 +122,12 @@ extension ContactsTableViewController: ContactUpdateViewControllerDelegate {
         
     }
     func didAddContact(contactViewModel: ContactViewModel) {
-        self.dismiss(animated: true) {
-            self.contactViewModels.insert(contactViewModel, at: 0)
-            self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+        DispatchQueue.main.async {
+            self.dismiss(animated: true) {
+//                self.contactViewModels.insert(contactViewModel, at: 0)
+//                self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
+            }
         }
+        
     }
 }

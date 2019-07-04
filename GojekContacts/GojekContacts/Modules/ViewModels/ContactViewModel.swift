@@ -23,8 +23,7 @@ class ContactViewModel {
     }
     
     // MARK: Public methods
-    func dictionaryValue() {
 
-    }
+    
 }
 

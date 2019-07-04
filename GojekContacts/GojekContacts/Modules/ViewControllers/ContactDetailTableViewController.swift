@@ -42,7 +42,6 @@ class ContactDetailTableViewController: UITableViewController {
             print("result: \(result)")
             if let result = result {
                 self.contactViewModel?.contact.update(item: result)
-                
                 self.updateUI()
             }
             else {
@@ -81,8 +80,11 @@ extension ContactDetailTableViewController: ContactUpdateViewControllerDelegate 
     }
     func didEditContact(contactViewModel: ContactViewModel) {
         self.updateUI()
-        self.tableView.reloadData()
-        self.dismiss(animated: true, completion: nil)
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+            self.dismiss(animated: true, completion: nil)
+        }
+
     }
     func didAddContact(contactViewModel: ContactViewModel) {
         self.dismiss(animated: true, completion: nil)

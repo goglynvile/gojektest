@@ -28,7 +28,6 @@ class ContactDetailHeaderView: UITableViewHeaderFooterView {
     weak var contactViewModel: ContactViewModel? {
         willSet {
             if let newValue = newValue {
-                print("contact header name: \(newValue.fullName)")
                  lblName.text = newValue.fullName
             }
         }
