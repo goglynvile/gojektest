@@ -21,7 +21,15 @@ class ContactsTableViewController: UITableViewController {
         self.fetchAllContacts()
         
         self.tableView.sectionIndexColor = UIColor.darkGray
+
+//        let activityView = UIActivityIndicatorView(style: .whiteLarge)
+//        activityView.color = UIColor.black
+//        activityView.center = self.view.center
+//        activityView.startAnimating()
+//
+//        self.view.addSubview(activityView)
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -32,6 +40,8 @@ class ContactsTableViewController: UITableViewController {
 
     // MARK: - Private methods
     private func fetchAllContacts() {
+        
+        self.showLoading()
         DataManager.shared.fetchAllContacts { (result, error) in
             if let result = result as? Array<Dictionary<String, Any>> {
                 
@@ -58,15 +68,14 @@ class ContactsTableViewController: UITableViewController {
                 self.sortAtoZ()
                 
                 DispatchQueue.main.async {
+                    self.hideLoading()
                     self.tableView.reloadData()
                 }
             }
             else {
                 guard let error = error else { return }
-                DispatchQueue.main.async {
+                    self.hideLoading()
                     self.showAlert(title: Constant.App.name, message: error)
-                }
-                
             }
         }
     }
@@ -99,6 +108,9 @@ class ContactsTableViewController: UITableViewController {
         return keys.count
     }
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -139,7 +151,7 @@ class ContactsTableViewController: UITableViewController {
                 DataManager.shared.deleteContact(id: id) { (result, error) in
                     DispatchQueue.main.async {
                         self.showAlert(title: Constant.App.name, message: Constant.Text.successDeleted(name: contactViewModel.fullName))
-                        print("deleting... \(id) atIndexPath: \(indexPath) count: \(contactViewModels.count)")
+                        
                         contactViewModels.remove(at: indexPath.row)
                         self.groups[key] = contactViewModels
 

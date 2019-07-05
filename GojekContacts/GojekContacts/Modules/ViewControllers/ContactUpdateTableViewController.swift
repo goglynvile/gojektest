@@ -94,15 +94,20 @@ class ContactUpdateTableViewController: UITableViewController {
     private func addContact() {
         
         print("adding...\(self.getParameter())")
+
         DataManager.shared.addContact(item: self.getParameter()) { (result, error) in
             if let result = result {
                 print("add result: \(result)")
                 let contact = Contact(item: result)
                 let cViewModel = ContactViewModel(contact: contact)
+
+                self.hideLoading()
+          
                 self.delegate?.didAddContact(contactViewModel: cViewModel)
             }
             else {
                 guard let error = error else { return }
+                self.hideLoading()
                 DispatchQueue.main.async {
                     self.showAlert(title: Constant.App.name, message: error)
                 }
@@ -116,18 +121,27 @@ class ContactUpdateTableViewController: UITableViewController {
             if let result = result {
                 print("edit result: \(result)")
                 self.contactViewModel?.contact.update(item: result)
+                
+                DispatchQueue.main.async {
+                    self.hideLoading()
+                }
+                
                 self.delegate?.didEditContact(contactViewModel: self.contactViewModel!)
             }
             else {
                 guard let error = error else { return }
                 DispatchQueue.main.async {
+                    self.hideLoading()
                     self.showAlert(title: Constant.App.name, message: error)
                 }
             }
         }
     }
     private func uploadImage() {
+        
         if let temp = tempImage, let data = temp.jpegData(compressionQuality: 0.2) {
+            
+            self.showLoading()
             DataManager.shared.uploadImage(data: data) { (result, error) in
                 if result != nil {
                     
@@ -144,6 +158,7 @@ class ContactUpdateTableViewController: UITableViewController {
                 }
                 else {
                     DispatchQueue.main.async {
+                        self.hideLoading()
                         self.showAlert(title: Constant.App.name, message: error)
                     }
                 }

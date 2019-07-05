@@ -44,7 +44,8 @@ class ContactDetailTableViewController: UITableViewController {
                 self.updateUI()
             }
             else {
-                
+                guard let error = error else { return }
+                self.showAlert(title: Constant.App.name, message: error)
             }
         }
     }
@@ -71,7 +72,7 @@ class ContactDetailTableViewController: UITableViewController {
         return headerView
     }
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 340
+        return 335
     }
 }
 extension ContactDetailTableViewController: ContactUpdateViewControllerDelegate {
@@ -107,7 +108,9 @@ extension ContactDetailTableViewController: ContactDetailHeaderViewDelegate {
                 }
             }
             else {
-                
+                guard let error = error else { return }
+                self.hideLoading()
+                self.showAlert(title: Constant.App.name, message: error)
             }
         }
     }
