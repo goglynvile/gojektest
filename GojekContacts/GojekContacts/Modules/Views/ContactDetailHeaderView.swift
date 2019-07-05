@@ -57,8 +57,7 @@ class ContactDetailHeaderView: UITableViewHeaderFooterView {
     }
     override func layoutSubviews() {
         super.layoutSubviews()
-        
-        print("detail layoutsubview")
+    
         Utility.addGradientToView(view: self.contentView, colorTop: .white, colorBottom: Constant.Color.green)
     }
     

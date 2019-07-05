@@ -11,6 +11,7 @@ import UIKit
 protocol ContactUpdateViewControllerDelegate {
     func didAddContact(contactViewModel: ContactViewModel)
     func didCancelUpdate()
+    func didEditContact(contactViewModel: ContactViewModel)
 }
 
 class ContactUpdateTableViewController: UITableViewController {
@@ -86,7 +87,6 @@ class ContactUpdateTableViewController: UITableViewController {
         item["email"] = self.txtEmail.text
         item["phone_number"] = self.txtMobile.text
         item["profile_pic"] = self.tempImageUrl
-    
         return item
     }
     
@@ -94,11 +94,12 @@ class ContactUpdateTableViewController: UITableViewController {
 
         DataManager.shared.addContact(item: self.getParameter()) { (result, error) in
             if let result = result {
+                print("result adding: \(result)")
+                
                 let contact = Contact(item: result)
                 let cViewModel = ContactViewModel(contact: contact)
 
                 self.hideLoading()
-          
                 self.delegate?.didAddContact(contactViewModel: cViewModel)
             }
             else {
@@ -117,6 +118,17 @@ class ContactUpdateTableViewController: UITableViewController {
             if let result = result {
                 self.contactViewModel?.contact.update(item: result)
                 self.hideLoading()
+                
+                DispatchQueue.main.async {
+                    if let cViewModel = self.contactViewModel {
+
+                        self.delegate?.didEditContact(contactViewModel: cViewModel)
+                        self.showAlertWithAction(title: Constant.App.name, action: UIAlertAction(title: "Ok", style: .default, handler: { (action) in
+                            self.dismiss(animated: true, completion: nil)
+                        }), message: Constant.Text.successUpdated(name: cViewModel.fullName))
+                    }
+    
+                }
             }
             else {
                 guard let error = error else { return }

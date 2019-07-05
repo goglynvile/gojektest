@@ -26,6 +26,9 @@ class Constant {
         static func successDeleted(name: String) -> String {
             return "Successfully deleted \(name)"
         }
+        static func successUpdated(name: String) -> String {
+            return "Successfully updated \(name)"
+        }
     }
     struct App {
         static let name = "Contact"

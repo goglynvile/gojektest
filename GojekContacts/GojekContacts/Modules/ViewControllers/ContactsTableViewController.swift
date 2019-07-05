@@ -174,6 +174,9 @@ class ContactsTableViewController: UITableViewController {
 }
 
 extension ContactsTableViewController: ContactUpdateViewControllerDelegate {
+    func didEditContact(contactViewModel: ContactViewModel) {
+        
+    }
     func didCancelUpdate() {
         self.dismiss(animated: true, completion: nil)
     }

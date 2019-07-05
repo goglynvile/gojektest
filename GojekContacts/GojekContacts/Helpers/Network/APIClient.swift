@@ -34,7 +34,7 @@ class APIClient {
         if let parameters = parameters {
             do {
                 let data = try JSONSerialization.data(withJSONObject: parameters, options: [])
-                request.httpBody = data//parameters.description.data(using: .utf8)
+                request.httpBody = data
             }
             catch {
                 

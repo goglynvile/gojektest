@@ -15,6 +15,7 @@ class PreloadingTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         // Initialization code
         self.imgSkeleton.roundImage()
         self.imgSkeleton.addBorder(color: UIColor.white)

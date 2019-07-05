@@ -39,8 +39,6 @@ class ContactEditHeaderView: UITableViewHeaderFooterView {
     }
     override func layoutSubviews() {
         super.layoutSubviews()
-        print("edit layoutsubview : \(self.layer.sublayers?.count)")
-        
         Utility.addGradientToView(view: self.contentView, colorTop: .white, colorBottom: Constant.Color.green)
     }
     

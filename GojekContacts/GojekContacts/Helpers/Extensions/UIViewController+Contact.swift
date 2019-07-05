@@ -26,6 +26,13 @@ extension UIViewController {
             self.present(controller, animated: true, completion: nil)
         }
     }
+    func showAlertWithAction(title: String?, action: UIAlertAction, message: String?) {
+        DispatchQueue.main.async {
+            let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            controller.addAction(action)
+            self.present(controller, animated: true, completion: nil)
+        }
+    }
     
     func showLoading() {
         DispatchQueue.main.async {
