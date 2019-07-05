@@ -10,7 +10,6 @@ import UIKit
 
 protocol ContactUpdateViewControllerDelegate {
     func didAddContact(contactViewModel: ContactViewModel)
-    func didEditContact(contactViewModel: ContactViewModel)
     func didCancelUpdate()
 }
 
@@ -117,19 +116,12 @@ class ContactUpdateTableViewController: UITableViewController {
         DataManager.shared.editContact(id: id, item: self.getParameter()) { (result, error) in
             if let result = result {
                 self.contactViewModel?.contact.update(item: result)
-                
-                DispatchQueue.main.async {
-                    self.hideLoading()
-                }
-                
-                self.delegate?.didEditContact(contactViewModel: self.contactViewModel!)
+                self.hideLoading()
             }
             else {
                 guard let error = error else { return }
-                DispatchQueue.main.async {
-                    self.hideLoading()
-                    self.showAlert(title: Constant.App.name, message: error)
-                }
+                self.hideLoading()
+                self.showAlert(title: Constant.App.name, message: error)
             }
         }
     }
@@ -153,10 +145,8 @@ class ContactUpdateTableViewController: UITableViewController {
                     }
                 }
                 else {
-                    DispatchQueue.main.async {
-                        self.hideLoading()
-                        self.showAlert(title: Constant.App.name, message: error)
-                    }
+                    self.hideLoading()
+                    self.showAlert(title: Constant.App.name, message: error)
                 }
             }
         }

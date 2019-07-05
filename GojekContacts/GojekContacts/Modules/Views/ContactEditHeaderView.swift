@@ -33,10 +33,15 @@ class ContactEditHeaderView: UITableViewHeaderFooterView {
         
         // customize UI components
         self.contentView.backgroundColor = .white
-        Utility.addGradientToView(view: self.contentView, colorTop: .white, colorBottom: Constant.Color.green)
         
         self.imgProfilePic.roundImage()
         self.imgProfilePic.addBorder(color: UIColor.white)
+    }
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        print("edit layoutsubview : \(self.layer.sublayers?.count)")
+        
+        Utility.addGradientToView(view: self.contentView, colorTop: .white, colorBottom: Constant.Color.green)
     }
     
     // MARK: IBActions

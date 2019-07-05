@@ -20,6 +20,7 @@
 		006F854F22CD9D4C00ED830F /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006F854E22CD9D4C00ED830F /* DataManager.swift */; };
 		006F855222CD9DA200ED830F /* Data+Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006F855122CD9DA200ED830F /* Data+Contact.swift */; };
 		006F855522CD9E8200ED830F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006F855422CD9E8200ED830F /* Constants.swift */; };
+		009D7DD922CF39570004AD96 /* test.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 009D7DD822CF39570004AD96 /* test.jpg */; };
 		00BF1E4E22CED86100E661AD /* UIViewController+Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BF1E4D22CED86100E661AD /* UIViewController+Contact.swift */; };
 		00BF1E5622CF154F00E661AD /* ContactUpdateUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BF1E5522CF154F00E661AD /* ContactUpdateUITests.swift */; };
 		00BF1E5E22CF1A8400E661AD /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BF1E5D22CF1A8400E661AD /* ActivityView.swift */; };
@@ -69,6 +70,7 @@
 		006F854E22CD9D4C00ED830F /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManager.swift; sourceTree = "<group>"; };
 		006F855122CD9DA200ED830F /* Data+Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Contact.swift"; sourceTree = "<group>"; };
 		006F855422CD9E8200ED830F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		009D7DD822CF39570004AD96 /* test.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = test.jpg; sourceTree = "<group>"; };
 		00BF1E4D22CED86100E661AD /* UIViewController+Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Contact.swift"; sourceTree = "<group>"; };
 		00BF1E5322CF154F00E661AD /* GojekContactsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GojekContactsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00BF1E5522CF154F00E661AD /* ContactUpdateUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUpdateUITests.swift; sourceTree = "<group>"; };
@@ -231,10 +233,27 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		00BF1E5422CF154F00E661AD /* GojekContactsUITests */ = {
+		009D7DD422CF39230004AD96 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				00BF1E5522CF154F00E661AD /* ContactUpdateUITests.swift */,
+			);
+			path = Tests;
+			sourceTree = "<group>";
+		};
+		009D7DD522CF392C0004AD96 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				009D7DD822CF39570004AD96 /* test.jpg */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		00BF1E5422CF154F00E661AD /* GojekContactsUITests */ = {
+			isa = PBXGroup;
+			children = (
+				009D7DD522CF392C0004AD96 /* Resources */,
+				009D7DD422CF39230004AD96 /* Tests */,
 				00BF1E5722CF154F00E661AD /* Info.plist */,
 			);
 			path = GojekContactsUITests;
@@ -382,6 +401,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				009D7DD922CF39570004AD96 /* test.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

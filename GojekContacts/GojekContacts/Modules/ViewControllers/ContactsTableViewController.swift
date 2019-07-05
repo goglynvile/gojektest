@@ -141,19 +141,15 @@ class ContactsTableViewController: UITableViewController {
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
         if !hasLoaded {
             return
         }
-
         self.performSegue(withIdentifier: "showDetail", sender: nil)
     }
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
         if !hasLoaded {
             return
         }
-        
         if editingStyle == .delete {
             
             self.showAlert(title: Constant.App.name, action: UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
@@ -180,9 +176,6 @@ class ContactsTableViewController: UITableViewController {
 extension ContactsTableViewController: ContactUpdateViewControllerDelegate {
     func didCancelUpdate() {
         self.dismiss(animated: true, completion: nil)
-    }
-    func didEditContact(contactViewModel: ContactViewModel) {
-        
     }
     func didAddContact(contactViewModel: ContactViewModel) {
         DispatchQueue.main.async {

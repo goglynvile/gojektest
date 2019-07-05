@@ -59,6 +59,9 @@
                                         <constraint firstItem="lnl-E8-PJi" firstAttribute="top" secondItem="We3-Em-Qes" secondAttribute="top" constant="12" id="cAB-c1-ufC"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="cell"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <outlet property="imgFavorite" destination="Zyk-hS-yb2" id="H8b-57-7no"/>
                                     <outlet property="imgProfilePic" destination="ggy-bQ-gEG" id="beK-uS-Ls2"/>
@@ -117,6 +120,9 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="0yP-od-3Pr">
                             <color key="tintColor" red="0.31570082902908325" green="0.8906407356262207" blue="0.76005297899246216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="accessibilityIdentifier" value="Add"/>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <segue destination="jrp-tE-RlN" kind="presentation" identifier="showAdd" id="Z2y-Du-a8C"/>
                             </connections>
@@ -128,7 +134,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zv3-cO-JzK" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="918.84057971014499" y="101.78571428571428"/>
+            <point key="canvasLocation" x="710" y="-127"/>
         </scene>
         <!--Contact Detail Table View Controller-->
         <scene sceneID="sX1-fa-zct">
@@ -229,7 +235,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vxi-Iy-6bb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1755" y="460"/>
+            <point key="canvasLocation" x="964" y="649"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="5Ka-FZ-ZS1">
@@ -251,7 +257,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wHB-rp-fxj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="247.82608695652175" y="102.45535714285714"/>
+            <point key="canvasLocation" x="-81" y="-127"/>
         </scene>
         <!--Contact Update Table View Controller-->
         <scene sceneID="qag-Ig-78M">

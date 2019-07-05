@@ -38,4 +38,6 @@ class ContactTableViewCell: UITableViewCell {
         self.imgProfilePic.roundImage()
         self.imgProfilePic.addBorder(color: UIColor.white)
     }
+    
+    
 }

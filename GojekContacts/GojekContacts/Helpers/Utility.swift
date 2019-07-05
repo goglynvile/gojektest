@@ -17,7 +17,6 @@ class Utility {
         gradientLayer.endPoint = CGPoint(x: 0.5, y: 0.0)
         gradientLayer.locations = [0, 1]
         gradientLayer.frame = view.bounds
-        
         view.layer.insertSublayer(gradientLayer, at: 0)
     }
 }
