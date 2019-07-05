@@ -19,6 +19,8 @@ class ContactsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.fetchAllContacts()
+        
+        self.tableView.sectionIndexColor = UIColor.darkGray
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)

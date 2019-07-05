@@ -11,7 +11,7 @@
 		006F852022CD7FF700ED830F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 006F851E22CD7FF700ED830F /* Main.storyboard */; };
 		006F852222CD7FF900ED830F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 006F852122CD7FF900ED830F /* Assets.xcassets */; };
 		006F852522CD7FF900ED830F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 006F852322CD7FF900ED830F /* LaunchScreen.storyboard */; };
-		006F853322CD80D900ED830F /* GojekContactsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006F853222CD80D900ED830F /* GojekContactsTests.swift */; };
+		006F853322CD80D900ED830F /* DataManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006F853222CD80D900ED830F /* DataManagerTests.swift */; };
 		006F854122CD93BE00ED830F /* ContactsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006F854022CD93BE00ED830F /* ContactsTableViewController.swift */; };
 		006F854322CD93D400ED830F /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006F854222CD93D400ED830F /* ContactTableViewCell.swift */; };
 		006F854822CD961800ED830F /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006F854722CD961800ED830F /* Contact.swift */; };
@@ -49,7 +49,7 @@
 		006F852422CD7FF900ED830F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		006F852622CD7FF900ED830F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		006F853022CD80D900ED830F /* GojekContactsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GojekContactsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		006F853222CD80D900ED830F /* GojekContactsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GojekContactsTests.swift; sourceTree = "<group>"; };
+		006F853222CD80D900ED830F /* DataManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataManagerTests.swift; sourceTree = "<group>"; };
 		006F853422CD80D900ED830F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		006F854022CD93BE00ED830F /* ContactsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTableViewController.swift; sourceTree = "<group>"; };
 		006F854222CD93D400ED830F /* ContactTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
@@ -123,7 +123,7 @@
 		006F853122CD80D900ED830F /* GojekContactsTests */ = {
 			isa = PBXGroup;
 			children = (
-				006F853222CD80D900ED830F /* GojekContactsTests.swift */,
+				006F853222CD80D900ED830F /* DataManagerTests.swift */,
 				006F853422CD80D900ED830F /* Info.plist */,
 			);
 			path = GojekContactsTests;
@@ -350,7 +350,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				006F853322CD80D900ED830F /* GojekContactsTests.swift in Sources */,
+				006F853322CD80D900ED830F /* DataManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -442,6 +442,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -496,6 +497,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
