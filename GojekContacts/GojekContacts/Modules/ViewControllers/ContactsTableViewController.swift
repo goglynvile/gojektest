@@ -62,6 +62,9 @@ class ContactsTableViewController: UITableViewController {
             }
             else {
                 guard let error = error else { return }
+                DispatchQueue.main.async {
+                    self.showAlert(title: Constant.App.name, message: error)
+                }
                 
             }
         }
@@ -123,6 +126,28 @@ class ContactsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "showDetail", sender: nil)
     }
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            
+            self.showAlert(title: Constant.App.name, action: UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in
+                let key = self.keys[indexPath.section]
+                guard var contactViewModels = self.groups[key] else { fatalError() }
+                let contactViewModel = contactViewModels[indexPath.row]
+                
+                guard let id = contactViewModel.contact.id else { return }
+                DataManager.shared.deleteContact(id: id) { (result, error) in
+                    DispatchQueue.main.async {
+                        self.showAlert(title: Constant.App.name, message: Constant.Text.successDeleted(name: contactViewModel.fullName))
+                        print("deleting... \(id) atIndexPath: \(indexPath) count: \(contactViewModels.count)")
+                        contactViewModels.remove(at: indexPath.row)
+                        self.groups[key] = contactViewModels
+
+                        self.tableView.deleteRows(at: [indexPath], with: .automatic)
+                    }
+                }
+            }), message: Constant.Text.deleteContact)
+        }
+    }
 }
 
 extension ContactsTableViewController: ContactUpdateViewControllerDelegate {
@@ -154,7 +179,7 @@ extension ContactsTableViewController: ContactUpdateViewControllerDelegate {
                 self.keys = Array(self.groups.keys)
                 self.sortAtoZ()
                 
-                self.showAlert(title: Constant.App.name, message: Constant.Text.successAdd(name: contactViewModel.fullName))
+                self.showAlert(title: Constant.App.name, message: Constant.Text.successAdded(name: contactViewModel.fullName))
                 
                 if let section = self.keys.firstIndex(of: key) {
                     self.tableView.reloadSections(IndexSet(integer: section), with: .automatic)

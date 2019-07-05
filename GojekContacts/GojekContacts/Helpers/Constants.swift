@@ -18,9 +18,13 @@ class Constant {
         static let null = "Data fetched is null."
         static let imagePlaceholder = "placeholder_photo"
         static let allFields = "Please fill out all the fields"
+        static let deleteContact = "Do you want to delete this contact?"
         
-        static func successAdd(name: String) -> String {
+        static func successAdded(name: String) -> String {
             return "Successfully added \(name)"
+        }
+        static func successDeleted(name: String) -> String {
+            return "Successfully deleted \(name)"
         }
     }
     struct App {

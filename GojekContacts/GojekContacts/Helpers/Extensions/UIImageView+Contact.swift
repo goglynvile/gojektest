@@ -9,6 +9,14 @@
 import UIKit
 
 extension UIImageView {
+    
+    func roundImage() {
+        self.layer.cornerRadius = self.frame.width / 2
+    }
+    func addBorder(color: UIColor) {
+        self.layer.borderWidth = 3
+        self.layer.borderColor = color.cgColor
+    }
     func downloadImage(withPlaceholder placeholder: UIImage?, oldImage: UIImage?, url: String?, completion: @escaping (_ image: UIImage?) -> Void) {
         if let oldImage = oldImage {
             self.image = oldImage
@@ -19,11 +27,15 @@ extension UIImageView {
             guard let url = url else { return }
             DataManager.shared.downloadImage(url: url) { (data, error) in
                 if let data = data {
-                    self.image = data.toImage()
+                    DispatchQueue.main.async {
+                        self.image = data.toImage()
+                    }
                     completion(data.toImage())
                 }
                 else {
-                    self.image = placeholder
+                    DispatchQueue.main.async {
+                        self.image = placeholder
+                    }
                     completion(placeholder)
                 }
             }

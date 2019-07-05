@@ -33,6 +33,7 @@ class ContactTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        Utility.roundImage(view: self.imgProfilePic)
+        self.imgProfilePic.roundImage()
+        self.imgProfilePic.addBorder(color: UIColor.white)
     }
 }

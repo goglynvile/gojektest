@@ -12,6 +12,7 @@ enum HTTPMethod: String {
     case get     = "GET"
     case post    = "POST"
     case put     = "PUT"
+    case delete  = "DELETE"
 }
 
 public typealias Parameters = [String: Any]

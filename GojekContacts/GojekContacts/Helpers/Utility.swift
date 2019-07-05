@@ -11,9 +11,7 @@ import UIKit
 
 class Utility {
     
-    class func roundImage(view: UIView) {
-        view.layer.cornerRadius = view.frame.width / 2
-    }
+    
     class func addGradientToView(view: UIView, colorTop: UIColor, colorBottom: UIColor){
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [colorBottom.withAlphaComponent(0.35).cgColor, colorTop.cgColor]

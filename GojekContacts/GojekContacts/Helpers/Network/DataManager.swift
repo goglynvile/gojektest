@@ -84,7 +84,36 @@ class DataManager {
             if error == nil {
                 if let data = data {
                     let dictionary = data.toJSONDictionary()
-                    completion(dictionary, nil)
+                    if let nError = dictionary?["errors"] as? Array<String> {
+                        print("editContact nError: \(nError)")
+                        completion(nil, nError.joined(separator: ", "))
+                    }
+                    else {
+                        completion(dictionary, nil)
+                    }
+                }
+                else {
+                    completion(nil, Constant.Text.null)
+                }
+            }
+            else {
+                completion(nil, error)
+            }
+        }
+    }
+    func deleteContact(id: Int, completion: @escaping DictionaryCompletionHandler) {
+        
+        APIClient.makeHTTPRequest(url: Server.contact(id: id), method: .delete, parameters: nil) { (data, error) in
+            if error == nil {
+                if let data = data {
+                    let dictionary = data.toJSONDictionary()
+                    if let nError = dictionary?["errors"] as? Array<String> {
+                        print("deleteContact nError: \(nError)")
+                        completion(nil, nError.joined(separator: ", "))
+                    }
+                    else {
+                        completion(dictionary, nil)
+                    }
                 }
                 else {
                     completion(nil, Constant.Text.null)

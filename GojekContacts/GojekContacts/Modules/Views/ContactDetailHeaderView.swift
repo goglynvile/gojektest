@@ -51,7 +51,8 @@ class ContactDetailHeaderView: UITableViewHeaderFooterView {
         // customize UI components
         self.contentView.backgroundColor = .white
         Utility.addGradientToView(view: self.contentView, colorTop: .white, colorBottom: Constant.Color.green)
-        Utility.roundImage(view: self.imgProfilePic)
+        self.imgProfilePic.roundImage()
+        self.imgProfilePic.addBorder(color: UIColor.white)
     }
     
     // MARK: Private methods
