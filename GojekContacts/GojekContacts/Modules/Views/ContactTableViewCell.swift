@@ -19,11 +19,13 @@ class ContactTableViewCell: UITableViewCell {
     var contactViewModel: ContactViewModel? {
         willSet {
             if let newValue = newValue {
-                lblName.text = newValue.fullName
-                imgFavorite.isHidden = !(newValue.contact.favorite ?? false)
-                
-                imgProfilePic.downloadImage(withPlaceholder: UIImage(named: Constant.Text.imagePlaceholder), oldImage: newValue.image, url: newValue.imageUrl) { (image) in
-                    self.contactViewModel?.image = image
+                self.imgFavorite.isHidden = true
+                UIView.animate(withDuration: 0.5) {
+                    self.lblName.text = newValue.fullName
+                    self.imgFavorite.isHidden = !(newValue.contact.favorite ?? false)
+                    self.imgProfilePic.downloadImage(withPlaceholder: UIImage(named: Constant.Text.imagePlaceholder), oldImage: newValue.image, url: newValue.imageUrl) { (image) in
+                        self.contactViewModel?.image = image
+                    }
                 }
             }
         }

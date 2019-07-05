@@ -24,8 +24,8 @@
                         <constraint firstAttribute="width" constant="130" id="Qba-55-Ius"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Second" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nOf-Uu-c0t">
-                    <rect key="frame" x="154" y="215" width="108.5" height="22"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Second" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nOf-Uu-c0t">
+                    <rect key="frame" x="10" y="215" width="396" height="22"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="22" id="CLg-M1-Red"/>
                     </constraints>
@@ -118,7 +118,9 @@
             <constraints>
                 <constraint firstItem="oY9-eD-oQc" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="40" id="Dut-Pm-91v"/>
                 <constraint firstItem="nOf-Uu-c0t" firstAttribute="top" secondItem="GiC-RG-17O" secondAttribute="bottom" constant="8" id="Dwp-fW-gEb"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="nOf-Uu-c0t" secondAttribute="trailing" constant="10" id="WWM-8K-Hb9"/>
                 <constraint firstItem="GiC-RG-17O" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="WrJ-pm-Y6q"/>
+                <constraint firstItem="nOf-Uu-c0t" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="fIn-4d-wPR"/>
                 <constraint firstItem="GiC-RG-17O" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="33" id="p8W-mo-6B7"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="oY9-eD-oQc" secondAttribute="trailing" constant="40" id="tKi-pa-NCY"/>
                 <constraint firstAttribute="bottom" secondItem="oY9-eD-oQc" secondAttribute="bottom" constant="20" id="upT-xR-h81"/>

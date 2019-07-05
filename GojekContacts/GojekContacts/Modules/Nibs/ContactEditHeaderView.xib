@@ -25,7 +25,7 @@
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s6k-3s-LV4">
-                    <rect key="frame" x="233" y="149.5" width="41" height="41"/>
+                    <rect key="frame" x="233" y="149.5" width="16" height="22"/>
                     <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="18"/>
                     <state key="normal" image="camera_button"/>
                     <connections>

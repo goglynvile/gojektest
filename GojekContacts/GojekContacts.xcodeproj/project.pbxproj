@@ -23,6 +23,7 @@
 		00BF1E4E22CED86100E661AD /* UIViewController+Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BF1E4D22CED86100E661AD /* UIViewController+Contact.swift */; };
 		00BF1E5622CF154F00E661AD /* ContactUpdateUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BF1E5522CF154F00E661AD /* ContactUpdateUITests.swift */; };
 		00BF1E5E22CF1A8400E661AD /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BF1E5D22CF1A8400E661AD /* ActivityView.swift */; };
+		00BF1E6022CF286A00E661AD /* PreloadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00BF1E5F22CF286A00E661AD /* PreloadingTableViewCell.swift */; };
 		00FDECDC22CDB37A00C00B02 /* ContactDetailHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 00FDECDB22CDB37A00C00B02 /* ContactDetailHeaderView.xib */; };
 		00FDECDE22CDB4EF00C00B02 /* ContactDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FDECDD22CDB4EF00C00B02 /* ContactDetailTableViewController.swift */; };
 		00FDECE022CDB71A00C00B02 /* ContactDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00FDECDF22CDB71A00C00B02 /* ContactDetailHeaderView.swift */; };
@@ -73,6 +74,7 @@
 		00BF1E5522CF154F00E661AD /* ContactUpdateUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactUpdateUITests.swift; sourceTree = "<group>"; };
 		00BF1E5722CF154F00E661AD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00BF1E5D22CF1A8400E661AD /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
+		00BF1E5F22CF286A00E661AD /* PreloadingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreloadingTableViewCell.swift; sourceTree = "<group>"; };
 		00FDECDB22CDB37A00C00B02 /* ContactDetailHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ContactDetailHeaderView.xib; sourceTree = "<group>"; };
 		00FDECDD22CDB4EF00C00B02 /* ContactDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailTableViewController.swift; sourceTree = "<group>"; };
 		00FDECDF22CDB71A00C00B02 /* ContactDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactDetailHeaderView.swift; sourceTree = "<group>"; };
@@ -165,6 +167,7 @@
 				006F854222CD93D400ED830F /* ContactTableViewCell.swift */,
 				00FDECDF22CDB71A00C00B02 /* ContactDetailHeaderView.swift */,
 				00FDECE722CDC56700C00B02 /* ContactEditHeaderView.swift */,
+				00BF1E5F22CF286A00E661AD /* PreloadingTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -395,6 +398,7 @@
 				006F854A22CD974C00ED830F /* ContactViewModel.swift in Sources */,
 				006F854822CD961800ED830F /* Contact.swift in Sources */,
 				006F855522CD9E8200ED830F /* Constants.swift in Sources */,
+				00BF1E6022CF286A00E661AD /* PreloadingTableViewCell.swift in Sources */,
 				00FDECE822CDC56700C00B02 /* ContactEditHeaderView.swift in Sources */,
 				006F851B22CD7FF700ED830F /* AppDelegate.swift in Sources */,
 				006F855222CD9DA200ED830F /* Data+Contact.swift in Sources */,

@@ -14,6 +14,7 @@ class ContactsTableViewController: UITableViewController {
     private var groups = Dictionary<String, Array<ContactViewModel>>()
     private var keys = Array<String>()
     private var selectedIndexPath: IndexPath?
+    private var hasLoaded = false
     
     // MARK: ViewController life cycle
     override func viewDidLoad() {
@@ -21,13 +22,6 @@ class ContactsTableViewController: UITableViewController {
         self.fetchAllContacts()
         
         self.tableView.sectionIndexColor = UIColor.darkGray
-
-//        let activityView = UIActivityIndicatorView(style: .whiteLarge)
-//        activityView.color = UIColor.black
-//        activityView.center = self.view.center
-//        activityView.startAnimating()
-//
-//        self.view.addSubview(activityView)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -41,7 +35,7 @@ class ContactsTableViewController: UITableViewController {
     // MARK: - Private methods
     private func fetchAllContacts() {
         
-        self.showLoading()
+        //self.showLoading()
         DataManager.shared.fetchAllContacts { (result, error) in
             if let result = result as? Array<Dictionary<String, Any>> {
                 
@@ -68,13 +62,14 @@ class ContactsTableViewController: UITableViewController {
                 self.sortAtoZ()
                 
                 DispatchQueue.main.async {
-                    self.hideLoading()
+                    self.hasLoaded = true
+                    //self.hideLoading()
                     self.tableView.reloadData()
                 }
             }
             else {
                 guard let error = error else { return }
-                    self.hideLoading()
+                    //self.hideLoading()
                     self.showAlert(title: Constant.App.name, message: error)
             }
         }
@@ -105,7 +100,7 @@ class ContactsTableViewController: UITableViewController {
     // MARK: - Table view data source
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return keys.count
+        return hasLoaded ? keys.count: 1
     }
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
@@ -114,20 +109,29 @@ class ContactsTableViewController: UITableViewController {
         return 100
     }
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return keys[section]
+        return hasLoaded ? keys[section] : ""
     }
     override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
-        return keys
+        return hasLoaded ? keys : nil
     }
     override func tableView(_ tableView: UITableView, sectionForSectionIndexTitle title: String, at index: Int) -> Int {
         return index
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if !hasLoaded {
+            return 10
+        }
         let key = keys[section]
         guard let contactViewModels = groups[key] else { fatalError()}
         return contactViewModels.count
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if !hasLoaded {
+            let nCell = tableView.dequeueReusableCell(withIdentifier: "skeleton", for: indexPath) as! PreloadingTableViewCell
+            
+            return nCell
+        }
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! ContactTableViewCell
         
         let key = keys[indexPath.section]
@@ -137,9 +141,19 @@ class ContactsTableViewController: UITableViewController {
         return cell
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if !hasLoaded {
+            return
+        }
+
         self.performSegue(withIdentifier: "showDetail", sender: nil)
     }
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+        if !hasLoaded {
+            return
+        }
+        
         if editingStyle == .delete {
             
             self.showAlert(title: Constant.App.name, action: UIAlertAction(title: "Delete", style: .destructive, handler: { (action) in

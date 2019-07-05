@@ -92,12 +92,9 @@ class ContactUpdateTableViewController: UITableViewController {
     }
     
     private func addContact() {
-        
-        print("adding...\(self.getParameter())")
 
         DataManager.shared.addContact(item: self.getParameter()) { (result, error) in
             if let result = result {
-                print("add result: \(result)")
                 let contact = Contact(item: result)
                 let cViewModel = ContactViewModel(contact: contact)
 
@@ -119,7 +116,6 @@ class ContactUpdateTableViewController: UITableViewController {
         guard let id = contactViewModel?.contact.id else { return }
         DataManager.shared.editContact(id: id, item: self.getParameter()) { (result, error) in
             if let result = result {
-                print("edit result: \(result)")
                 self.contactViewModel?.contact.update(item: result)
                 
                 DispatchQueue.main.async {
@@ -197,6 +193,7 @@ class ContactUpdateTableViewController: UITableViewController {
 
 extension ContactUpdateTableViewController: ContactEditHeaderViewDelegate {
     func didSelectPicker() {
+    
         let pickerController = UIImagePickerController()
         pickerController.delegate = self
         pickerController.allowsEditing = true
@@ -234,7 +231,6 @@ extension ContactUpdateTableViewController: UITextFieldDelegate {
                 self.showAlert(title: Constant.App.name, message: Constant.Text.allFields)
             }
         }
-        
         return true
     }
 }
