@@ -31,21 +31,25 @@ class ContactsTableViewController: UITableViewController {
     // MARK: - Private methods
     private func fetchAllContacts() {
         DataManager.shared.fetchAllContacts { (result, error) in
-            if let result = result {
+            if let result = result as? Array<Dictionary<String, Any>> {
                 
-                print("contacts result: \(result)")
-                for item in result {
-                    guard let nItem = item as? Dictionary<String, Any> else { return }
-                    let contact = Contact(item: nItem)
+                // sort result
+                let sortedResult = result.sorted(by: {(($0["first_name"] as? String) ?? "") < (($1["first_name"] as? String) ?? "")})
+
+                for item in sortedResult {
+                    let contact = Contact(item: item)
                     let cViewModel = ContactViewModel(contact: contact)
                     
                     if let prefix = contact.firstName?.prefix(1) {
-                        var group = self.groups[String(prefix).uppercased()]
+                        let key = String(prefix).uppercased()
+                        var group = self.groups[key]
                         if group == nil {
                             group = Array<ContactViewModel>()
+                            self.groups[String(prefix).uppercased()] = group
                         }
                         group?.append(cViewModel)
-                        self.groups[String(prefix).uppercased()] = group
+                        
+                        self.groups[key] = group //?.sorted(by: { ($0.contact.firstName ?? "") < ($1.contact.firstName ?? "")})
                     }
                 }
                 
@@ -63,8 +67,6 @@ class ContactsTableViewController: UITableViewController {
         }
     }
     private func sortAtoZ() {
-       // self.contactViewModels.sort(by: { $0.fullName < $1.fullName })
-       // self.groups = self.groups.sorted(by: { $0.key < $1.key})
         self.keys.sort(by: { $0 < $1})
     }
 
@@ -133,6 +135,29 @@ extension ContactsTableViewController: ContactUpdateViewControllerDelegate {
     func didAddContact(contactViewModel: ContactViewModel) {
         DispatchQueue.main.async {
             self.dismiss(animated: true) {
+                
+                let contact = contactViewModel.contact
+
+                guard let prefix = contact.firstName?.prefix(1) else { return }
+                
+                let key = String(prefix).uppercased()
+                var group = self.groups[key]
+                if group == nil {
+                    group = Array<ContactViewModel>()
+                }
+                group?.append(contactViewModel)
+                
+                self.groups[key] = group?.sorted(by: { ($0.contact.firstName ?? "") < ($1.contact.firstName ?? "")})
+                let row = self.groups[key]?.firstIndex(where: {$0.contact.id == contactViewModel.contact.id
+                })
+                
+                self.keys = Array(self.groups.keys)
+                self.sortAtoZ()
+                
+                if let section = self.keys.firstIndex(of: key) {
+                    self.tableView.reloadSections(IndexSet(integer: section), with: .automatic)
+                    self.tableView.scrollToRow(at: IndexPath(row: row ?? 0, section: section), at: .top, animated: true)
+                }
                 
 //                self.contactViewModels.insert(contactViewModel, at: 0)
 //                self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
