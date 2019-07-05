@@ -49,8 +49,7 @@ class ContactUpdateTableViewController: UITableViewController {
         self.delegate?.didCancelUpdate()
     }
     @IBAction func clickedDone(_ sender: UIBarButtonItem) {
-        
-        // check parameters
+
         if !hasParameterError() {
             self.uploadImage()
         }
@@ -152,6 +151,7 @@ class ContactUpdateTableViewController: UITableViewController {
         }
         
     }
+    
     private func didSelectImage(image: UIImage?) {
         if let image = image {
             tempImage = image
@@ -197,5 +197,29 @@ extension ContactUpdateTableViewController: UINavigationControllerDelegate, UIIm
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         picker.dismiss(animated: true, completion: nil)
         self.didSelectImage(image: info[.editedImage] as? UIImage)
+    }
+}
+extension ContactUpdateTableViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == txtFirstName {
+            txtLastName.becomeFirstResponder()
+        }
+        else if textField == txtLastName {
+            txtMobile.becomeFirstResponder()
+        }
+        else if textField == txtMobile {
+            txtEmail.becomeFirstResponder()
+        }
+        else if textField == txtEmail {
+            
+            if !hasParameterError() {
+                self.uploadImage()
+            }
+            else {
+                self.showAlert(title: Constant.App.name, message: Constant.Text.allFields)
+            }
+        }
+        
+        return true
     }
 }
