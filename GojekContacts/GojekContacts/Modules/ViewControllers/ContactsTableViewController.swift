@@ -48,8 +48,7 @@ class ContactsTableViewController: UITableViewController {
                             self.groups[String(prefix).uppercased()] = group
                         }
                         group?.append(cViewModel)
-                        
-                        self.groups[key] = group //?.sorted(by: { ($0.contact.firstName ?? "") < ($1.contact.firstName ?? "")})
+                        self.groups[key] = group
                     }
                 }
                 

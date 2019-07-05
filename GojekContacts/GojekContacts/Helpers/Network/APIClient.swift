@@ -16,9 +16,11 @@ enum HTTPMethod: String {
 }
 
 public typealias Parameters = [String: Any]
+public typealias Authentication = [String: String]
 public typealias DataCompletionHandler = (_ data : Data?,_ error: String?) -> Void
 public typealias ArrayCompletionHandler = (_ result : Array<Any>?,_ error: String?) -> Void
 public typealias DictionaryCompletionHandler = (_ result : Dictionary<String, Any>?,_ error: String?) -> Void
+public typealias URLCompletionHandler = (_ url : String?,_ error: String?) -> Void
 
 
 class APIClient {
@@ -38,9 +40,22 @@ class APIClient {
                 
             }
         }
-        print("request: \(request) body: \(request.httpBody)")
         let dataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
            completion(data, error?.localizedDescription)
+        }
+        dataTask.resume()
+    }
+    
+    class func makeHTTPRequestWithImage(url: String, authentication: Authentication, data: Data, completion: @escaping DataCompletionHandler) {
+        guard let url = URL(string: url) else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.httpBody = data
+        for key in authentication.keys {
+            request.addValue(authentication[key]!, forHTTPHeaderField: key)
+        }
+        let dataTask = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            completion(data, error?.localizedDescription)
         }
         dataTask.resume()
     }

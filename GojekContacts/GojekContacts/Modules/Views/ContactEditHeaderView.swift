@@ -8,6 +8,9 @@
 
 import UIKit
 
+protocol ContactEditHeaderViewDelegate {
+    func didSelectPicker()
+}
 class ContactEditHeaderView: UITableViewHeaderFooterView {
 
     // MARK: Default values
@@ -22,6 +25,7 @@ class ContactEditHeaderView: UITableViewHeaderFooterView {
     
     // MARK: Public properties
     weak var contactViewModel: ContactViewModel?
+    var delegate: ContactEditHeaderViewDelegate?
     
     // MARK: Override methods
     override func awakeFromNib() {
@@ -34,16 +38,19 @@ class ContactEditHeaderView: UITableViewHeaderFooterView {
         self.imgProfilePic.roundImage()
         self.imgProfilePic.addBorder(color: UIColor.white)
     }
-
-    /*
-    // Only override draw() if you perform custom drawing.
-    // An empty implementation adversely affects performance during animation.
-    override func draw(_ rect: CGRect) {
-        // Drawing code
-    }
-    */
+    
+    // MARK: IBActions
     @IBAction func clickedImagePicker(_ sender: UIButton) {
-    
+        self.delegate?.didSelectPicker()
     }
     
+    // MARK: Public methods
+    public func updateHeader(withImage image: UIImage?) {
+        if let temp = image {
+            self.imgProfilePic.image = temp
+        }
+        else {
+            self.imgProfilePic.image = UIImage(named: Constant.Text.imagePlaceholder)
+        }
+    }
 }

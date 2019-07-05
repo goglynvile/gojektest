@@ -29,6 +29,7 @@ class ContactDetailHeaderView: UITableViewHeaderFooterView {
     
     // MARK: Public properties
     weak var contactViewModel: ContactViewModel? {
+        
         willSet {
             if let newValue = newValue {
                 lblName.text = newValue.fullName
@@ -65,13 +66,15 @@ class ContactDetailHeaderView: UITableViewHeaderFooterView {
     
     // MARK: IBActions
     @IBAction func clickedMessage(_ sender: UIButton) {
+        self.contactViewModel?.openMessenger()
     }
     @IBAction func clickedCall(_ sender: UIButton) {
+        self.contactViewModel?.openCall()
     }
     @IBAction func clickedEmail(_ sender: UIButton) {
+        self.contactViewModel?.openEmail()
     }
     @IBAction func clickedFavourite(_ sender: UIButton) {
-        
         guard let cViewModel = contactViewModel else { return }
         self.delegate?.didSelectFavorite(contactViewModel: cViewModel)
     }

@@ -18,6 +18,13 @@ struct Server {
     static func contact(id: Int) -> String {
         return "\(Server.baseUrl)/contacts/\(id).json"
     }
+    
+    struct Image {
+        static let storeUrl = "https://api.imgur.com/3/upload"
+        static let clientId = "Client-ID 546c25a59c58ad7"
+        static let authorization = "Authorization"
+    }
+    
 }
 
 class DataManager {
@@ -62,7 +69,6 @@ class DataManager {
                 if let data = data {
                     let dictionary = data.toJSONDictionary()
                     if let nError = dictionary?["errors"] as? Array<String> {
-                        print("addContact nError: \(nError)")
                         completion(nil, nError.joined(separator: ", "))
                     }
                     else {
@@ -85,7 +91,6 @@ class DataManager {
                 if let data = data {
                     let dictionary = data.toJSONDictionary()
                     if let nError = dictionary?["errors"] as? Array<String> {
-                        print("editContact nError: \(nError)")
                         completion(nil, nError.joined(separator: ", "))
                     }
                     else {
@@ -108,7 +113,6 @@ class DataManager {
                 if let data = data {
                     let dictionary = data.toJSONDictionary()
                     if let nError = dictionary?["errors"] as? Array<String> {
-                        print("deleteContact nError: \(nError)")
                         completion(nil, nError.joined(separator: ", "))
                     }
                     else {
@@ -129,6 +133,30 @@ class DataManager {
             if error == nil {
                 if let data = data {
                     completion(data, nil)
+                }
+                else {
+                    completion(nil, Constant.Text.null)
+                }
+            }
+            else {
+                completion(nil, error)
+            }
+        }
+    }
+    func uploadImage(data: Data, completion: @escaping URLCompletionHandler) {
+        
+        APIClient.makeHTTPRequestWithImage(url: Server.Image.storeUrl, authentication: [Server.Image.authorization : Server.Image.clientId], data: data) { (result, error) in
+            if error == nil {
+                if let result = result {
+                    
+                    if let dictionary = result.toJSONDictionary() {
+                        if let data = dictionary["data"] as? Dictionary<String, Any>, let url = data["link"] as? String {
+                            completion(url, nil)
+                            return
+                        }
+                    }
+                    completion(nil, Constant.Text.null)
+                   
                 }
                 else {
                     completion(nil, Constant.Text.null)

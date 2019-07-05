@@ -21,6 +21,9 @@ class ContactUpdateTableViewController: UITableViewController {
     var isNew: Bool = false
     var delegate: ContactUpdateViewControllerDelegate?
     
+    private var tempImage: UIImage?
+    private var tempImageUrl: String?
+    
     // MARK: Public IBOutlets
     @IBOutlet weak var txtFirstName: UITextField!
     @IBOutlet weak var txtLastName: UITextField!
@@ -46,12 +49,15 @@ class ContactUpdateTableViewController: UITableViewController {
         self.delegate?.didCancelUpdate()
     }
     @IBAction func clickedDone(_ sender: UIBarButtonItem) {
-        if isNew {
-            self.addContact()
+        
+        // check parameters
+        if !hasParameterError() {
+            self.uploadImage()
         }
         else {
-            self.editContact()
+             self.showAlert(title: Constant.App.name, message: Constant.Text.allFields)
         }
+       
     }
     
     // MARK: Private methods
@@ -69,24 +75,26 @@ class ContactUpdateTableViewController: UITableViewController {
                 txtField.layer.borderWidth = 0
             }
         }
+        if tempImage == nil {
+            hasEmpty = true
+        }
         return hasEmpty
     }
     private func getParameter() -> Parameters {
-        var item = Parameters()
-        item["first_name"] = txtFirstName.text
-        item["last_name"] = txtLastName.text
-        item["email"] = txtEmail.text
-        item["phone_number"] = txtMobile.text
         
+        var item = Parameters()
+        item["first_name"] = self.txtFirstName.text
+        item["last_name"] = self.txtLastName.text
+        item["email"] = self.txtEmail.text
+        item["phone_number"] = self.txtMobile.text
+        item["profile_pic"] = self.tempImageUrl
+    
         return item
     }
+    
     private func addContact() {
-
-        if self.hasParameterError() {
-            self.showAlert(title: Constant.App.name, message: Constant.Text.allFields)
-            return
-        }
-        print("adding...")
+        
+        print("adding...\(self.getParameter())")
         DataManager.shared.addContact(item: self.getParameter()) { (result, error) in
             if let result = result {
                 print("add result: \(result)")
@@ -104,11 +112,6 @@ class ContactUpdateTableViewController: UITableViewController {
     }
     private func editContact() {
         
-        if self.hasParameterError() {
-            self.showAlert(title: Constant.App.name, message: Constant.Text.allFields)
-            return
-        }
-        
         guard let id = contactViewModel?.contact.id else { return }
         DataManager.shared.editContact(id: id, item: self.getParameter()) { (result, error) in
             if let result = result {
@@ -122,6 +125,37 @@ class ContactUpdateTableViewController: UITableViewController {
                     self.showAlert(title: Constant.App.name, message: error)
                 }
             }
+        }
+    }
+    private func uploadImage() {
+        if let temp = tempImage, let data = temp.jpegData(compressionQuality: 0.2) {
+            DataManager.shared.uploadImage(data: data) { (result, error) in
+                if result != nil {
+                    
+                    self.tempImageUrl = result
+                    
+                    DispatchQueue.main.async {
+                        if self.isNew {
+                            self.addContact()
+                        }
+                        else {
+                            self.editContact()
+                        }
+                    }
+                }
+                else {
+                    DispatchQueue.main.async {
+                        self.showAlert(title: Constant.App.name, message: error)
+                    }
+                }
+            }
+        }
+        
+    }
+    private func didSelectImage(image: UIImage?) {
+        if let image = image {
+            tempImage = image
+            self.tableView.reloadData()
         }
     }
     private func updateUI() {
@@ -140,7 +174,28 @@ class ContactUpdateTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: ContactEditHeaderView.reuseIdentifier) as? ContactEditHeaderView
         headerView?.contactViewModel = contactViewModel
+        headerView?.delegate = self
+        headerView?.updateHeader(withImage: tempImage)
         return headerView
     }
+}
 
+extension ContactUpdateTableViewController: ContactEditHeaderViewDelegate {
+    func didSelectPicker() {
+        let pickerController = UIImagePickerController()
+        pickerController.delegate = self
+        pickerController.allowsEditing = true
+        pickerController.mediaTypes = ["public.image"]
+        self.present(pickerController, animated: true, completion: nil)
+    }
+}
+
+extension ContactUpdateTableViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true, completion: nil)
+        self.didSelectImage(image: info[.editedImage] as? UIImage)
+    }
 }

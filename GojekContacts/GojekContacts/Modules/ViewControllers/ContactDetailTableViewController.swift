@@ -75,7 +75,6 @@ class ContactDetailTableViewController: UITableViewController {
     }
 }
 extension ContactDetailTableViewController: ContactUpdateViewControllerDelegate {
-    
     func didCancelUpdate() {
         self.dismiss(animated: true, completion: nil)
     }
@@ -97,12 +96,11 @@ extension ContactDetailTableViewController: ContactDetailHeaderViewDelegate {
         
         let fav = contactViewModel.isFavorite
         item["favorite"] = !fav
-        
+
         guard let id = contactViewModel.contact.id else { return }
         DataManager.shared.editContact(id: id, item: item) { (result, error) in
             if let result = result {
                 self.contactViewModel?.contact.update(item: result)
-                
                 self.updateUI()
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
