@@ -61,7 +61,13 @@ class DataManager {
             if error == nil {
                 if let data = data {
                     let dictionary = data.toJSONDictionary()
-                    completion(dictionary, nil)
+                    if let nError = dictionary?["errors"] as? Array<String> {
+                        print("addContact nError: \(nError)")
+                        completion(nil, nError.joined(separator: ", "))
+                    }
+                    else {
+                        completion(dictionary, nil)
+                    }
                 }
                 else {
                     completion(nil, Constant.Text.null)

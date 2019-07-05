@@ -26,6 +26,8 @@ class ContactUpdateTableViewController: UITableViewController {
     @IBOutlet weak var txtLastName: UITextField!
     @IBOutlet weak var txtMobile: UITextField!
     @IBOutlet weak var txtEmail: UITextField!
+    @IBOutlet var txtFields: [UITextField]!
+    
     
     // MARK: ViewController life cycle
     override func viewDidLoad() {
@@ -53,16 +55,39 @@ class ContactUpdateTableViewController: UITableViewController {
     }
     
     // MARK: Private methods
-    private func addContact() {
+    private func hasParameterError() -> Bool {
+        var hasEmpty = false
+    
+        for txtField in self.txtFields {
+            if txtField.text == nil || txtField.text?.isEmpty ?? true {
+                txtField.layer.borderColor = UIColor.red.cgColor
+                txtField.layer.borderWidth = 1
+                hasEmpty = true
+            }
+            else {
+                txtField.layer.borderColor = UIColor.clear.cgColor
+                txtField.layer.borderWidth = 0
+            }
+        }
+        return hasEmpty
+    }
+    private func getParameter() -> Parameters {
         var item = Parameters()
-        
         item["first_name"] = txtFirstName.text
         item["last_name"] = txtLastName.text
         item["email"] = txtEmail.text
         item["phone_number"] = txtMobile.text
-        print("adding...")
         
-        DataManager.shared.addContact(item: item) { (result, error) in
+        return item
+    }
+    private func addContact() {
+
+        if self.hasParameterError() {
+            self.showAlert(title: Constant.App.name, message: Constant.Text.allFields)
+            return
+        }
+        print("adding...")
+        DataManager.shared.addContact(item: self.getParameter()) { (result, error) in
             if let result = result {
                 print("add result: \(result)")
                 let contact = Contact(item: result)
@@ -71,20 +96,21 @@ class ContactUpdateTableViewController: UITableViewController {
             }
             else {
                 guard let error = error else { return }
+                DispatchQueue.main.async {
+                    self.showAlert(title: Constant.App.name, message: error)
+                }
             }
         }
     }
     private func editContact() {
-        var item = Parameters()
         
-        item["first_name"] = txtFirstName.text
-        item["last_name"] = txtLastName.text
-        item["email"] = txtEmail.text
-        item["phone_number"] = txtMobile.text
+        if self.hasParameterError() {
+            self.showAlert(title: Constant.App.name, message: Constant.Text.allFields)
+            return
+        }
         
         guard let id = contactViewModel?.contact.id else { return }
-        
-        DataManager.shared.editContact(id: id, item: item) { (result, error) in
+        DataManager.shared.editContact(id: id, item: self.getParameter()) { (result, error) in
             if let result = result {
                 print("edit result: \(result)")
                 self.contactViewModel?.contact.update(item: result)
@@ -92,6 +118,9 @@ class ContactUpdateTableViewController: UITableViewController {
             }
             else {
                 guard let error = error else { return }
+                DispatchQueue.main.async {
+                    self.showAlert(title: Constant.App.name, message: error)
+                }
             }
         }
     }

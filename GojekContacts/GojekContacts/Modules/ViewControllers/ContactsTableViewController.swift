@@ -154,13 +154,12 @@ extension ContactsTableViewController: ContactUpdateViewControllerDelegate {
                 self.keys = Array(self.groups.keys)
                 self.sortAtoZ()
                 
+                self.showAlert(title: Constant.App.name, message: Constant.Text.successAdd(name: contactViewModel.fullName))
+                
                 if let section = self.keys.firstIndex(of: key) {
                     self.tableView.reloadSections(IndexSet(integer: section), with: .automatic)
                     self.tableView.scrollToRow(at: IndexPath(row: row ?? 0, section: section), at: .top, animated: true)
                 }
-                
-//                self.contactViewModels.insert(contactViewModel, at: 0)
-//                self.tableView.insertRows(at: [IndexPath(row: 0, section: 0)], with: .automatic)
             }
         }
         

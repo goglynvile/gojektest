@@ -17,6 +17,14 @@ class Constant {
     struct Text {
         static let null = "Data fetched is null."
         static let imagePlaceholder = "placeholder_photo"
+        static let allFields = "Please fill out all the fields"
+        
+        static func successAdd(name: String) -> String {
+            return "Successfully added \(name)"
+        }
+    }
+    struct App {
+        static let name = "Contact"
     }
 
 }

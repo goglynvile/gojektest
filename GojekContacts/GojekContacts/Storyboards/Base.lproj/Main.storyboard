@@ -231,7 +231,7 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="John" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vBG-6P-61E">
+                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vBG-6P-61E">
                                                     <rect key="frame" x="123" y="23" width="284" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <nil key="textColor"/>
@@ -255,7 +255,7 @@
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Appleseed" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ryh-fg-SOh">
+                                                <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ryh-fg-SOh">
                                                     <rect key="frame" x="123" y="23" width="284" height="30"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <nil key="textColor"/>
@@ -284,7 +284,7 @@
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="namePhonePad"/>
+                                                    <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                                 </textField>
                                             </subviews>
                                         </tableViewCellContentView>
@@ -326,11 +326,15 @@
                         <outlet property="txtFirstName" destination="vBG-6P-61E" id="4Hz-dc-1xQ"/>
                         <outlet property="txtLastName" destination="Ryh-fg-SOh" id="re1-zS-eIA"/>
                         <outlet property="txtMobile" destination="Zfy-4J-5x9" id="oxd-tJ-lYo"/>
+                        <outletCollection property="txtFields" destination="vBG-6P-61E" collectionClass="NSMutableArray" id="occ-hn-cBR"/>
+                        <outletCollection property="txtFields" destination="Ryh-fg-SOh" collectionClass="NSMutableArray" id="YY4-Eq-DIz"/>
+                        <outletCollection property="txtFields" destination="Zfy-4J-5x9" collectionClass="NSMutableArray" id="qh5-m4-Bnk"/>
+                        <outletCollection property="txtFields" destination="YJU-JF-JLI" collectionClass="NSMutableArray" id="1Ui-B8-FRw"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8yD-Y7-UtD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2374" y="96"/>
+            <point key="canvasLocation" x="1842" y="-306"/>
         </scene>
     </scenes>
     <resources>
